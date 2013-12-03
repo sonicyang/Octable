@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
+    <script type="text/javascript" src="./static/js/course.js"></script>
+</head>
+<body onload="this.onresize();">
+    <nav class="navbar">
+        <h1>Octable</h1>
+        <button id="sidebar_toggle" onclick="sidebar_toggle();">E</button>
+    </nav>
+
+
+    <div id="container">
+        <div id="block_container">
+            <div class="block" id="test">
+                <div id="000">~</div>
+                <div id="001">1</div>
+                <div id="002">2</div>
+                <div id="003">3</div>
+                <div id="004">4</div>
+                <div id="00N">N</div>
+                <div id="005">5</div>
+                <div id="006">6</div>
+                <div id="007">7</div>
+                <div id="008">8</div>
+                <div id="009">9</div>
+                <div id="dynamic_table_1">
+                    <div id="00A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child">A</div>
+                    <div id="00B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child">B</div>
+                    <div id="00C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child">C</div>
+                    <div id="00D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child">D</div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+            </div>
+
+        <div class="block" id="Mon">
+            <div id="100">一</div>
+            <div id="101" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="102" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="103" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="104" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="10N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="105" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="106" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="107" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="108" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+            <div id="109" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"><br></div>
+            <div id="dynamic_table_2">
+                    <div id="10A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="10B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="10C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="10D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+        <div class="block" id="Tue">
+                <div id="200">二</div>
+                <div id="201" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="202" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="203" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="204" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="20N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="205" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="206" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="207" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="208" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="209" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"><br></div>
+                <div id="dynamic_table_3">
+                    <div id="20A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="20B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="20C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="20D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+        <div class="block" id="Wed">
+                <div id="300">三</div>
+                <div id="301" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="302" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="303" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="304" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="30N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="305" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="306" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="307" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="308" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="309" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"><br></div>
+                <div id="dynamic_table_4">
+                    <div id="30A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="30B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="30C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="30D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+        <div class="block" id="Thr">
+                <div id="400">四</div>
+                <div id="401" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="402" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="403" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="404" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="40N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="405" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="406" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="407" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="408" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="409" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"><br></div>
+                <div id="dynamic_table_5">
+                    <div id="40A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="40B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="40C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="40D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+        <div class="block" id="Fri">
+                <div id="500">五</div>
+                <div id="501" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="502" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="503" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="504" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="50N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="505" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="506" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="507" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="508" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="509" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"><br></div>
+                <div id="dynamic_table_6">
+                    <div id="50A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="50B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="50C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="50D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+        <div class="block" id="Sat">
+                <div id="600">六</div>
+                <div id="601" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="602" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="603" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="604" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="60N" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="605" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="606" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="607" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="608" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)"></div>
+                <div id="609" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" ><br></div>
+                <div id="dynamic_table_7">
+                    <div id="60A" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="60B" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="60C" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div id="60D" mom="" onclick="oneclick_Block(this,event)" ondblclick="click_Block(this)" onmouseover="hover_Block(this)" onmouseout="out_Block(this)" class="dynamic_table_child"></div>
+                    <div class="dynamic_table_child"><br></div>
+                </div>
+                <div class="extra_list"><br></div>
+        </div>
+    </div>
+    <div id="hello_container">
+        <div id="sidebar">
+           <div id="list_title">
+               <div id="selector_container">
+                    <select onchange="selectionChange_School(this)" id="school">
+                        <option value="0">請選學校</option>
+                        <option value="nchu">中興大學</option>
+                        <option value="ncku">成功大學</option>
+                    </select>   
+
+                    <select id="department" onchange="selectionChange()"></select>
+
+                    <select id="grade" onchange="selectionChange()">
+                        <option value="0">All</option>
+                        <option value="1">一</option>
+                        <option value="2">二</option>
+                        <option value="3">三</option>
+                        <option value="4">四</option>
+                    </select>
+                </div>
+                <div id="list_title_1" onclick="title1()">必修課程</div>
+                <div id="list_title_2" onclick="title2()">選修課程</div>
+                <div id="list_title_3" onclick="title3()">已選課程</div>
+            </div>
+            <div class="list_container" id="list_container_1">
+                <div class="list" id="obl_List">
+                 請選擇學校與科系
+                </div>
+                <div class="extra_list"><br></div>
+
+            </div>
+            <div class="list_container" id="list_container_2" >
+                <div class="list" id="opt_List">請選擇學校與科系</div>
+                <div class="extra_list"><br></div>
+            </div>
+            <div class="list_container" id="list_container_3" >
+                <div class="list" id="ext_List"><ul class="course"></ul></div>
+                <div class="extra_list"><br></div>
+            </div>
+        </div>
+    </div>
+
+
+<div class="extern" id="extern"></div>
+</body>
+</html>
