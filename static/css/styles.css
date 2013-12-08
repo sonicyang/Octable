@@ -3,17 +3,16 @@ html {
 }
 
 body {
-    background-color:#EEE
+    margin: 0;
+    background-color:#666
 }
 
 nav {
-    height: 50px;
-    margin: 0px;
-    width: 1080px;
-    padding: 0px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px #141414;
     background-color: #EBEBEB;
+    width: 100%;
+    margin: 0 0 1em 0;
+    padding: 0;
+    box-shadow: 1px 1px 3px #141414;
 }
 
 nav h1 {
@@ -24,9 +23,6 @@ nav h1 {
 
 #sidebar_toggle {
     display: none;
-    position: absolute;
-    top: 20px;
-    right: 20px;
     width:30px;
     height:30px;
     border-radius: 2px 2px 2px 2px;
@@ -35,17 +31,15 @@ nav h1 {
 #sidebar{
     width:300px;
     padding:0px;
-    margin:0px;
-    background-color:#DEDEDE;
     height:400px;
 }
 
 #container{
     display: block;
-    padding:20px;
     width:1300px;
-    margin: 0px auto;
-}   
+    padding:0;
+    margin: 0;
+}
 
 #list_title_1{
     display:inline-block;
@@ -53,7 +47,7 @@ nav h1 {
     top:-10px;
     margin:0px;
     width:80px;
-    height:30px; 
+    height:30px;
     background-color: #DEDEDE;
     border-radius: 0px 0px 0px 0px;
     text-align: center;
@@ -87,7 +81,6 @@ nav h1 {
     width:95px;
     height:30px;
     text-align: center;
-    border-radius: 0px 0px 0px 0px;
     box-shadow: inset 0px 0px 3px ;
     z-index: 2;
 }
@@ -104,36 +97,11 @@ nav h1 {
     position: relative;
 }
 #hello_container {
-    transition: 0.5s;
-    display: block;
     position: relative;
-    float: right;
-    top: 0px;
-    right: 110px;
-    width: 450px;
-    margin-left: 20px;
-    background-color: #EEE;
-    transition: 0.5s;
+    display: inline-block;
+    float: left;
+    height: 100%;
 }
-
-/*@media (min-width: 1024px) {
-    #hello_container {
-        right: 0px;
-        visibility: visible;
-    }
-}
-
-@media (max-width: 1024px) {
-    #sidebar_toggle {
-        display: inline-block;
-    }
-    #continaer {
-        width: 1000px;
-    }
-    #hello_container {
-        visibility: hidden;
-    }
-}*/
 
 #selector_container{
     position:relative;
@@ -147,13 +115,13 @@ nav h1 {
     width: 400px;
     z-index: 6;
 }
- 
+
 #list_title{
     display:inline-block;
-    position: relative;
     width: 300px;
     height: 70px;
-    
+    background-color:#DDD;
+
 }
 #list_title div{
     text-algin: center;
@@ -168,8 +136,7 @@ nav h1 {
     text-align: center;
     border-width: 0px;
     background-color: #EAEAEA;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: inset 0px 0px 15px 3px;
+    box-shadow: inset 0px 0px 15px;
     border-style: solid;
     border-color: #007AFA;
     line-height:540px;
@@ -187,47 +154,56 @@ nav h1 {
 .course li {
     padding-bottom:0px;
     font-size: 11px;
-    border-bottom: 1px dotted;
     text-align:left;
+    border-bottom: 1px dotted;
 
 }
-
-/*
-.extra_list{
-    display: block;
-    background-color: none;
-    margin: 0px;
-    width: 100px;
-    text-align: center;
-    height: 50px;
-    margin-top: 3px;
-}
-*/
 
 #block_container{
+    display: inline-block;
     position: relative;
-    display: inline-block;      
+    width: 60%;
+    margin-left: 10px;
 }
 
 .block{
     display: inline-block;
-    width: 100px;
+    width: 12%;
+    padding: 0;
+    margin: 0;
     font-size:9px;
 }
 
 .block div{
-    display: block;
     background-color: #DEDEDE;
+    display: block;
+    height: 50px;
     width: 100px;
     text-align: center;
-    height: 50px;
-    //border-radius: 5px;
     border:3px solid #EDEDED;
-    border-bottom:3px solid #ccc;
-    }
+    border-top:0px solid #ccc;
+}
+
+.block div:first-child {
+    height: 3%;
+}
+
 .block div:nth-last-child(1){
     background-color: rgba(100,100,100,0);
     border:0px ;
+}
+
+#test {
+    width: 1%;
+}
+
+#test div {
+    background-color: #EEE;
+    width: 100%;
+}
+
+.extra_list {
+    visibility: hidden;
 }
 
 .extern {
@@ -285,22 +261,17 @@ nav h1 {
 #dynamic_table_7{
     transition:3s;
     display:none;
-    margin:0px;
     padding:0px;
+    margin:0px;
     border:0px;
 }
 
-
-
-
-
-
 .dynamic_table_child{
-    display: block;
     background-color: #DEDEDE;
+    display: block;
+    height: 50px;
     width: 100px;
     text-align: center;
-    height: 50px;
     border:3px solid #EDEDED;
     border-bottom:3px solid #ccc;
 }

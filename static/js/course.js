@@ -454,12 +454,11 @@ function out_Block(block) {
 }
 
 var last_c = "";
-function oneclick_Block(block,event) {
-
-    var mx = event.pageX +5;
-    var my = event.pageY +5 ;
+function oneclick_Block(block, event) {
+    var mx = event.pageX + 5;
+    var my = event.pageY + 5 ;
     var di = block.getAttribute("mom");
-    if(di != "" && di != last_c){
+    if (di != "" && di != last_c) {
         var ext = document.getElementById("extern");
         ext.style.display = "inline-block";
         ext.style.opacity = "0.75";
@@ -474,18 +473,15 @@ function oneclick_Block(block,event) {
                         "<div>必／選修: " + data[di]['obligatory']+ "</div>";
         last_c = di;
 
-    }
-    else if (di == last_c){
+    } else if (di == last_c) {
+        var ext = document.getElementById("extern");
+        ext.style.display = "none";
+        last_c = "";
+    } else {
         var ext = document.getElementById("extern");
         ext.style.display = "none";
         last_c = "";
     }
-    else{
-        var ext = document.getElementById("extern");
-        ext.style.display = "none";
-        last_c = "";
-    }
-
 }
 
 //toyo
@@ -551,6 +547,7 @@ function title3(){
     title1.style["borderRadius"] = "0px 0px 0px 0px";
 }
 
+/*
 var toggle = 0;
 function sidebar_toggle() {
     var sidebar = document.getElementById("hello_container");
@@ -591,3 +588,4 @@ window.onresize = function() {
         toggle = 0;
     }
 };
+*/

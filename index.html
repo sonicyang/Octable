@@ -3,19 +3,58 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
-    <script type="text/javascript" src="./static/js/course.js"></script>
 </head>
 <body onload="this.onresize();">
     <nav class="navbar">
         <h1>Octable</h1>
-        <button id="sidebar_toggle" onclick="sidebar_toggle();">E</button>
+        <button id="sidebar_toggle">E</button>
     </nav>
 
-
     <div id="container">
+    <div id="hello_container">
+        <div id="sidebar">
+           <div id="list_title">
+               <div id="selector_container">
+                    <select onchange="selectionChange_School(this)" id="school">
+                        <option value="0">請選學校</option>
+                        <option value="nchu">中興大學</option>
+                        <option value="ncku">成功大學</option>
+                    </select>
+
+                    <select id="department" onchange="selectionChange()"></select>
+
+                    <select id="grade" onchange="selectionChange()">
+                        <option value="0">All</option>
+                        <option value="1">一</option>
+                        <option value="2">二</option>
+                        <option value="3">三</option>
+                        <option value="4">四</option>
+                    </select>
+                </div>
+                <div id="list_title_1" onclick="title1()">必修課程</div>
+                <div id="list_title_2" onclick="title2()">選修課程</div>
+                <div id="list_title_3" onclick="title3()">已選課程</div>
+            </div>
+            <div class="list_container" id="list_container_1">
+                <div class="list" id="obl_List">
+                 請選擇學校與科系
+                </div>
+                <div class="extra_list"><br></div>
+
+            </div>
+            <div class="list_container" id="list_container_2" >
+                <div class="list" id="opt_List">請選擇學校與科系</div>
+                <div class="extra_list"><br></div>
+            </div>
+            <div class="list_container" id="list_container_3" >
+                <div class="list" id="ext_List"><ul class="course"></ul></div>
+                <div class="extra_list"><br></div>
+            </div>
+        </div>
+    </div>
         <div id="block_container">
             <div class="block" id="test">
-                <div id="000">~</div>
+                <div class="day" id="000"></div>
                 <div id="001">1</div>
                 <div id="002">2</div>
                 <div id="003">3</div>
@@ -163,49 +202,10 @@
                 <div class="extra_list"><br></div>
         </div>
     </div>
-    <div id="hello_container">
-        <div id="sidebar">
-           <div id="list_title">
-               <div id="selector_container">
-                    <select onchange="selectionChange_School(this)" id="school">
-                        <option value="0">請選學校</option>
-                        <option value="nchu">中興大學</option>
-                        <option value="ncku">成功大學</option>
-                    </select>   
-
-                    <select id="department" onchange="selectionChange()"></select>
-
-                    <select id="grade" onchange="selectionChange()">
-                        <option value="0">All</option>
-                        <option value="1">一</option>
-                        <option value="2">二</option>
-                        <option value="3">三</option>
-                        <option value="4">四</option>
-                    </select>
-                </div>
-                <div id="list_title_1" onclick="title1()">必修課程</div>
-                <div id="list_title_2" onclick="title2()">選修課程</div>
-                <div id="list_title_3" onclick="title3()">已選課程</div>
-            </div>
-            <div class="list_container" id="list_container_1">
-                <div class="list" id="obl_List">
-                 請選擇學校與科系
-                </div>
-                <div class="extra_list"><br></div>
-
-            </div>
-            <div class="list_container" id="list_container_2" >
-                <div class="list" id="opt_List">請選擇學校與科系</div>
-                <div class="extra_list"><br></div>
-            </div>
-            <div class="list_container" id="list_container_3" >
-                <div class="list" id="ext_List"><ul class="course"></ul></div>
-                <div class="extra_list"><br></div>
-            </div>
-        </div>
-    </div>
 
 
 <div class="extern" id="extern"></div>
+    <script type="text/javascript" src="./static/js/course.js"></script>
+    <script type="text/javascript" src="./static/js/table.js"></script>
 </body>
 </html>
