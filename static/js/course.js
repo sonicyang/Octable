@@ -31,9 +31,10 @@ function ajax_Fetch(HOST, DIR) {
 
 
 function selectionChange_School(sel) {
+    var host = window.location.toString();
     var school = sel.options[sel.selectedIndex].value;
     var datapath = "/static/data/" + school + "/" + school.toString();
-    data = ajax_Fetch("http://octable.mollusca.cc",datapath);
+    data = ajax_Fetch(host, datapath);
     document.getElementById("grade").value = 0;
     var department = document.getElementById("department");
     department.innerHTML = "";
