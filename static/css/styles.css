@@ -177,12 +177,22 @@ body {
     width: 100%;
 }
 
+.day {
+    height: 3% !important;
+    background-color: #666 !important;
+    border-color: #666 !important;
+}
+
 .column{
     display: inline-block;
     width: 12%;
     padding: 0;
     margin: 0;
     font-size:9px;
+}
+
+.column:nth-child(2) .cell {
+    border-left-color: #000;
 }
 
 .cell {
@@ -197,15 +207,8 @@ body {
 
 .cell:nth-last-child(1){
     background-color: rgba(100,100,100,0);
-    border:0px ;
+    border:0px;
 }
-
-.day {
-    height: 3%;
-    background-color: #666;
-    border-color: #666;
-}
-
 
 .extra_list {
     visibility: hidden;
@@ -221,53 +224,11 @@ body {
     z-Index: 200;
 }
 
-#dynamic_table_1{
+.dynamic_table{
     transition:3s;
     display:none;
     margin:0px;
     padding:0px;
-    border:0px;
-}
-#dynamic_table_2{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-#dynamic_table_3{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-#dynamic_table_4{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-#dynamic_table_5{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-#dynamic_table_6{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-#dynamic_table_7{
-    transition:3s;
-    display:none;
-    padding:0px;
-    margin:0px;
     border:0px;
 }
 

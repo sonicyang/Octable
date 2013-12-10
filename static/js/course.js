@@ -147,13 +147,10 @@ function hover_Course(course) {
                 acctime = "0" + acctime;
             }
             if (acctime == "0A" || acctime == "0B" || acctime == "0C" || acctime == "0D") {
-                document.getElementById("dynamic_table_1").style.display = "block";
-                document.getElementById("dynamic_table_2").style.display = "block";
-                document.getElementById("dynamic_table_3").style.display = "block";
-                document.getElementById("dynamic_table_4").style.display = "block";
-                document.getElementById("dynamic_table_5").style.display = "block";
-                document.getElementById("dynamic_table_6").style.display = "block";
-                document.getElementById("dynamic_table_7").style.display = "block";
+                var dynamic_tables = document.getElementsByClassName("dynamic_table");
+                for (j = 0; j < dynamic_tables.length; j++) {
+                    dynamic_tables[j].style.display = "block";
+                }
             }
             acctime = weekday + acctime;
             if (acctime.length >= 3) {
@@ -226,13 +223,10 @@ function dyn_ext() {
         }
     }
     if (flag) {
-        document.getElementById("dynamic_table_1").style.display = "none";
-        document.getElementById("dynamic_table_2").style.display = "none";
-        document.getElementById("dynamic_table_3").style.display = "none";
-        document.getElementById("dynamic_table_4").style.display = "none";
-        document.getElementById("dynamic_table_5").style.display = "none";
-        document.getElementById("dynamic_table_6").style.display = "none";
-        document.getElementById("dynamic_table_7").style.display = "none";
+        var dynamic_tables = document.getElementsByClassName("dynamic_table");
+        for (i = 0; i < dynamic_tables.length; i++) {
+            dynamic_tables[i].style.display = "none";
+        }
     }
 }
 
