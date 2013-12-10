@@ -3,11 +3,16 @@ html {
 }
 
 body {
+    background-color:#666;
     margin: 0;
-    background-color:#666
 }
 
-nav {
+#base_container {
+    width: 100%;
+    height: 100%;
+}
+
+#header {
     background-color: #EBEBEB;
     width: 100%;
     margin: 0 0 1em 0;
@@ -15,32 +20,20 @@ nav {
     box-shadow: 1px 1px 3px #141414;
 }
 
-nav h1 {
+#header h1 {
     display: inline-block;
     margin-left: 20px;
     line-height: 10px;
 }
 
-#sidebar_toggle {
-    display: none;
-    width:30px;
-    height:30px;
-    border-radius: 2px 2px 2px 2px;
-}
-
-#sidebar{
-    width:300px;
-    padding:0px;
-    height:400px;
-}
-
-#container{
+#content_container{
     display: block;
     width:1300px;
     padding:0;
     margin: 0;
 }
 
+/* Sidebar */
 #list_title_1{
     display:inline-block;
     position: relative;
@@ -84,23 +77,29 @@ nav h1 {
     box-shadow: inset 0px 0px 3px ;
     z-index: 2;
 }
-#list_container_1{
+#obligatory{
     display: inline-block;
     position: relative;
-}
-#list_container_2{
-    display: none;
-    position: relative;
-}
-#list_container_3{
-    display: none;
-    position: relative;
-}
-#hello_container {
-    position: relative;
-    display: inline-block;
-    float: left;
     height: 100%;
+}
+#elective{
+    display: none;
+    position: relative;
+    height: 100%;
+}
+#selected {
+    display: none;
+    position: relative;
+    height: 100%;
+}
+
+#sidebar{
+    display: inline-block;
+    position: relative;
+    width:300px;
+    padding:0px;
+    vertical-align: top;
+    overflow: auto;
 }
 
 #selector_container{
@@ -112,7 +111,8 @@ nav h1 {
 .list_container{
     display: inline-block;
     position: relative;
-    width: 400px;
+    width: 300px;
+    height: 100%;
     z-index: 6;
 }
 
@@ -131,7 +131,7 @@ nav h1 {
     position: relative;
     display: inline-block;
     width: 300px;
-    height: 540px;
+    height: 100%;
     margin: 0px;
     text-align: center;
     border-width: 0px;
@@ -140,7 +140,6 @@ nav h1 {
     border-style: solid;
     border-color: #007AFA;
     line-height:540px;
-    overflow-y:scroll;
 }
 
 .course{
@@ -159,14 +158,26 @@ nav h1 {
 
 }
 
-#block_container{
+/* Cell Blocks */
+#form{
     display: inline-block;
     position: relative;
     width: 60%;
+    white-space: 0xp;
+    vertical-align: top;
     margin-left: 10px;
 }
 
-.block{
+#days {
+    width: 1%;
+}
+
+#days cell {
+    background-color: #EEE;
+    width: 100%;
+}
+
+.column{
     display: inline-block;
     width: 12%;
     padding: 0;
@@ -174,7 +185,7 @@ nav h1 {
     font-size:9px;
 }
 
-.block div{
+.cell {
     background-color: #DEDEDE;
     display: block;
     height: 50px;
@@ -184,23 +195,15 @@ nav h1 {
     border-top:0px solid #ccc;
 }
 
-.block div:first-child {
+.cell:first-child {
     height: 3%;
 }
 
-.block div:nth-last-child(1){
+.cell:nth-last-child(1){
     background-color: rgba(100,100,100,0);
     border:0px ;
 }
 
-#test {
-    width: 1%;
-}
-
-#test div {
-    background-color: #EEE;
-    width: 100%;
-}
 
 .extra_list {
     visibility: hidden;
