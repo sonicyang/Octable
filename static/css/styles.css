@@ -168,11 +168,11 @@ body {
     margin-left: 10px;
 }
 
-#days {
+#time {
     width: 1%;
 }
 
-#days cell {
+#time .cell {
     background-color: #EEE;
     width: 100%;
 }
@@ -195,13 +195,15 @@ body {
     border-top:0px solid #ccc;
 }
 
-.cell:first-child {
-    height: 3%;
-}
-
 .cell:nth-last-child(1){
     background-color: rgba(100,100,100,0);
     border:0px ;
+}
+
+.day {
+    height: 3%;
+    background-color: #666;
+    border-color: #666;
 }
 
 
@@ -272,7 +274,7 @@ body {
 .dynamic_table_child{
     background-color: #DEDEDE;
     display: block;
-    height: 50px;
+    height: 0px;
     width: 100px;
     text-align: center;
     border:3px solid #EDEDED;
