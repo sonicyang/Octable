@@ -1,204 +1,205 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
-</head>
-<body>
-    <div id="base_container">
-    <nav id="header">
-        <h1>Octable</h1>
-    </nav>
+    <head>
+        <meta charset="utf-8">
+        <title>Octable</title>
+        <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
+    </head>
+    <body>
+        <div id="base_container">
+            <nav id="header">
+                <h1>Octable</h1>
+            </nav>
 
-    <div id="content_container">
-        <div id="sidebar">
-           <div id="list_title">
-               <div id="selector_container">
-                    <select id="school">
-                        <option value="0">請選學校</option>
-                        <option value="nchu">中興大學</option>
-                        <option value="ncku">成功大學</option>
-                    </select>
+            <div id="content_container">
+                <div id="sidebar">
+                   <div id="list_title">
+                       <div id="selector_container">
+                            <select id="school">
+                                <option value="0">請選學校</option>
+                                <option value="nchu">中興大學</option>
+                                <option value="ncku">成功大學</option>
+                            </select>
 
-                    <select id="department"></select>
+                            <select id="department"></select>
 
-                    <select id="grade">
-                        <option value="0">All</option>
-                        <option value="1">一</option>
-                        <option value="2">二</option>
-                        <option value="3">三</option>
-                        <option value="4">四</option>
-                    </select>
+                            <select id="grade">
+                                <option value="0">All</option>
+                                <option value="1">一</option>
+                                <option value="2">二</option>
+                                <option value="3">三</option>
+                                <option value="4">四</option>
+                            </select>
+                        </div>
+                        <div id="list_title_1">必修課程</div>
+                        <div id="list_title_2">選修課程</div>
+                        <div id="list_title_3">已選課程</div>
+                    </div>
+                    <div class="list_container" id="obligatory">
+                        <div class="list" id="obl_List">請選擇學校與科系</div>
+                    </div>
+                    <div class="list_container" id="elective" >
+                        <div class="list" id="opt_List">請選擇學校與科系</div>
+                    </div>
+                    <div class="list_container" id="selected" >
+                        <div class="list" id="ext_List"><ul class="course"></ul></div>
+                    </div>
                 </div>
-                <div id="list_title_1">必修課程</div>
-                <div id="list_title_2">選修課程</div>
-                <div id="list_title_3">已選課程</div>
+                <div id="form">
+                    <div class="column" id="time">
+                        <div class="cell day" id="000"></div>
+                        <div class="cell" id="001">1</div>
+                        <div class="cell" id="002">2</div>
+                        <div class="cell" id="003">3</div>
+                        <div class="cell" id="004">4</div>
+                        <div class="cell" id="00N">N</div>
+                        <div class="cell" id="005">5</div>
+                        <div class="cell" id="006">6</div>
+                        <div class="cell" id="007">7</div>
+                        <div class="cell" id="008">8</div>
+                        <div class="cell" id="009">9</div>
+                        <div class="dynamic_table">
+                            <div class="cell" id="00A">A</div>
+                            <div class="cell" id="00B">B</div>
+                            <div class="cell" id="00C">C</div>
+                            <div class="cell" id="00D">D</div>
+                            <div class="clearfix"><br></div>
+                        </div>
+                        <div class="clearfix"><br></div>
+                    </div>
+
+                    <div class="column" id="Mon">
+                        <div class="cell day" id="100">一</div>
+                        <div class="cell" id="101" mom=""></div>
+                        <div class="cell" id="102" mom=""></div>
+                        <div class="cell" id="103" mom=""></div>
+                        <div class="cell" id="104" mom=""></div>
+                        <div class="cell" id="10N" mom=""></div>
+                        <div class="cell" id="105" mom=""></div>
+                        <div class="cell" id="106" mom=""></div>
+                        <div class="cell" id="107" mom=""></div>
+                        <div class="cell" id="108" mom=""></div>
+                        <div class="cell" id="109" mom=""><br></div>
+                        <div class="dynamic_table">
+                                <div class="cell" id="10A" mom=""></div>
+                                <div class="cell" id="10B" mom=""></div>
+                                <div class="cell" id="10C" mom=""></div>
+                                <div class="cell" id="10D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                    <div class="column" id="Tue">
+                            <div class="cell day" id="200">二</div>
+                            <div class="cell" id="201" mom=""></div>
+                            <div class="cell" id="202" mom=""></div>
+                            <div class="cell" id="203" mom=""></div>
+                            <div class="cell" id="204" mom=""></div>
+                            <div class="cell" id="20N" mom=""></div>
+                            <div class="cell" id="205" mom=""></div>
+                            <div class="cell" id="206" mom=""></div>
+                            <div class="cell" id="207" mom=""></div>
+                            <div class="cell" id="208" mom=""></div>
+                            <div class="cell" id="209" mom=""><br></div>
+                            <div class="dynamic_table">
+                                <div class="cell" id="20A" mom=""></div>
+                                <div class="cell" id="20B" mom=""></div>
+                                <div class="cell" id="20C" mom=""></div>
+                                <div class="cell" id="20D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                    <div class="column" id="Wed">
+                            <div class="cell day" id="300">三</div>
+                            <div class="cell" id="301" mom=""></div>
+                            <div class="cell" id="302" mom=""></div>
+                            <div class="cell" id="303" mom=""></div>
+                            <div class="cell" id="304" mom=""></div>
+                            <div class="cell" id="30N" mom=""></div>
+                            <div class="cell" id="305" mom=""></div>
+                            <div class="cell" id="306" mom=""></div>
+                            <div class="cell" id="307" mom=""></div>
+                            <div class="cell" id="308" mom=""></div>
+                            <div class="cell" id="309" mom=""><br></div>
+                            <div class="dynamic_table">
+                                <div class="cell" id="30A" mom=""></div>
+                                <div class="cell" id="30B" mom=""></div>
+                                <div class="cell" id="30C" mom=""></div>
+                                <div class="cell" id="30D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                    <div class="column" id="Thr">
+                            <div class="cell day" id="400">四</div>
+                            <div class="cell" id="401" mom=""></div>
+                            <div class="cell" id="402" mom=""></div>
+                            <div class="cell" id="403" mom=""></div>
+                            <div class="cell" id="404" mom=""></div>
+                            <div class="cell" id="40N" mom=""></div>
+                            <div class="cell" id="405" mom=""></div>
+                            <div class="cell" id="406" mom=""></div>
+                            <div class="cell" id="407" mom=""></div>
+                            <div class="cell" id="408" mom=""></div>
+                            <div class="cell" id="409" mom=""><br></div>
+                            <div class="dynamic_table">
+                                <div class="cell" id="40A" mom=""></div>
+                                <div class="cell" id="40B" mom=""></div>
+                                <div class="cell" id="40C" mom=""></div>
+                                <div class="cell" id="40D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                    <div class="column" id="Fri">
+                            <div class="cell day" id="500">五</div>
+                            <div class="cell" id="501" mom=""></div>
+                            <div class="cell" id="502" mom=""></div>
+                            <div class="cell" id="503" mom=""></div>
+                            <div class="cell" id="504" mom=""></div>
+                            <div class="cell" id="50N" mom=""></div>
+                            <div class="cell" id="505" mom=""></div>
+                            <div class="cell" id="506" mom=""></div>
+                            <div class="cell" id="507" mom=""></div>
+                            <div class="cell" id="508" mom=""></div>
+                            <div class="cell" id="509" mom=""><br></div>
+                            <div class="dynamic_table">
+                                <div class="cell" id="50A" mom=""></div>
+                                <div class="cell" id="50B" mom=""></div>
+                                <div class="cell" id="50C" mom=""></div>
+                                <div class="cell" id="50D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                    <div class="column" id="Sat">
+                            <div class="cell day" id="600">六</div>
+                            <div class="cell" id="601" mom=""></div>
+                            <div class="cell" id="602" mom=""></div>
+                            <div class="cell" id="603" mom=""></div>
+                            <div class="cell" id="604" mom=""></div>
+                            <div class="cell" id="60N" mom=""></div>
+                            <div class="cell" id="605" mom=""></div>
+                            <div class="cell" id="606" mom=""></div>
+                            <div class="cell" id="607" mom=""></div>
+                            <div class="cell" id="608" mom=""></div>
+                            <div class="cell" id="609" mom=""><br></div>
+                            <div class="dynamic_table">
+                                <div class="cell" id="60A" mom=""></div>
+                                <div class="cell" id="60B" mom=""></div>
+                                <div class="cell" id="60C" mom=""></div>
+                                <div class="cell" id="60D" mom=""></div>
+                                <div class="clearfix"><br></div>
+                            </div>
+                            <div class="clearfix"><br></div>
+                    </div>
+                </div>
+                <div class="extern" id="extern"></div>
             </div>
-            <div class="list_container" id="obligatory">
-                <div class="list" id="obl_List">請選擇學校與科系</div>
-            </div>
-            <div class="list_container" id="elective" >
-                <div class="list" id="opt_List">請選擇學校與科系</div>
-            </div>
-            <div class="list_container" id="selected" >
-                <div class="list" id="ext_List"><ul class="course"></ul></div>
-            </div>
         </div>
-        <div id="form">
-            <div class="column" id="time">
-                <div class="cell day" id="000"></div>
-                <div class="cell" id="001">1</div>
-                <div class="cell" id="002">2</div>
-                <div class="cell" id="003">3</div>
-                <div class="cell" id="004">4</div>
-                <div class="cell" id="00N">N</div>
-                <div class="cell" id="005">5</div>
-                <div class="cell" id="006">6</div>
-                <div class="cell" id="007">7</div>
-                <div class="cell" id="008">8</div>
-                <div class="cell" id="009">9</div>
-                <div class="dynamic_table">
-                    <div class="cell" id="00A">A</div>
-                    <div class="cell" id="00B">B</div>
-                    <div class="cell" id="00C">C</div>
-                    <div class="cell" id="00D">D</div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-            </div>
 
-        <div class="column" id="Mon">
-            <div class="cell day" id="100">一</div>
-            <div class="cell" id="101" mom="" ></div>
-            <div class="cell" id="102" mom="" ></div>
-            <div class="cell" id="103" mom="" ></div>
-            <div class="cell" id="104" mom="" ></div>
-            <div class="cell" id="10N" mom="" ></div>
-            <div class="cell" id="105" mom="" ></div>
-            <div class="cell" id="106" mom="" ></div>
-            <div class="cell" id="107" mom="" ></div>
-            <div class="cell" id="108" mom="" ></div>
-            <div class="cell" id="109" mom="" ><br></div>
-            <div class="dynamic_table">
-                    <div class="cell" id="10A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="10B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="10C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="10D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-        <div class="column" id="Tue">
-                <div class="cell day" id="200">二</div>
-                <div class="cell" id="201" mom="" ></div>
-                <div class="cell" id="202" mom="" ></div>
-                <div class="cell" id="203" mom="" ></div>
-                <div class="cell" id="204" mom="" ></div>
-                <div class="cell" id="20N" mom="" ></div>
-                <div class="cell" id="205" mom="" ></div>
-                <div class="cell" id="206" mom="" ></div>
-                <div class="cell" id="207" mom="" ></div>
-                <div class="cell" id="208" mom="" ></div>
-                <div class="cell" id="209" mom="" ><br></div>
-                <div class="dynamic_table">
-                    <div class="cell" id="20A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="20B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="20C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="20D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-        <div class="column" id="Wed">
-                <div class="cell day" id="300">三</div>
-                <div class="cell" id="301" mom="" ></div>
-                <div class="cell" id="302" mom="" ></div>
-                <div class="cell" id="303" mom="" ></div>
-                <div class="cell" id="304" mom="" ></div>
-                <div class="cell" id="30N" mom="" ></div>
-                <div class="cell" id="305" mom="" ></div>
-                <div class="cell" id="306" mom="" ></div>
-                <div class="cell" id="307" mom="" ></div>
-                <div class="cell" id="308" mom="" ></div>
-                <div class="cell" id="309" mom="" ><br></div>
-                <div class="dynamic_table">
-                    <div class="cell" id="30A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="30B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="30C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="30D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-        <div class="column" id="Thr">
-                <div class="cell day" id="400">四</div>
-                <div class="cell" id="401" mom="" ></div>
-                <div class="cell" id="402" mom="" ></div>
-                <div class="cell" id="403" mom="" ></div>
-                <div class="cell" id="404" mom="" ></div>
-                <div class="cell" id="40N" mom="" ></div>
-                <div class="cell" id="405" mom="" ></div>
-                <div class="cell" id="406" mom="" ></div>
-                <div class="cell" id="407" mom="" ></div>
-                <div class="cell" id="408" mom="" ></div>
-                <div class="cell" id="409" mom="" ><br></div>
-                <div class="dynamic_table">
-                    <div class="cell" id="40A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="40B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="40C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="40D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-        <div class="column" id="Fri">
-                <div class="cell day" id="500">五</div>
-                <div class="cell" id="501" mom="" ></div>
-                <div class="cell" id="502" mom="" ></div>
-                <div class="cell" id="503" mom="" ></div>
-                <div class="cell" id="504" mom="" ></div>
-                <div class="cell" id="50N" mom="" ></div>
-                <div class="cell" id="505" mom="" ></div>
-                <div class="cell" id="506" mom="" ></div>
-                <div class="cell" id="507" mom="" ></div>
-                <div class="cell" id="508" mom="" ></div>
-                <div class="cell" id="509" mom="" ><br></div>
-                <div class="dynamic_table">
-                    <div class="cell" id="50A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="50B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="50C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="50D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-        <div class="column" id="Sat">
-                <div class="cell day" id="600">六</div>
-                <div class="cell" id="601" mom="" ></div>
-                <div class="cell" id="602" mom="" ></div>
-                <div class="cell" id="603" mom="" ></div>
-                <div class="cell" id="604" mom="" ></div>
-                <div class="cell" id="60N" mom="" ></div>
-                <div class="cell" id="605" mom="" ></div>
-                <div class="cell" id="606" mom="" ></div>
-                <div class="cell" id="607" mom="" ></div>
-                <div class="cell" id="608" mom="" ></div>
-                <div class="cell" id="609" mom=""  ><br></div>
-                <div class="dynamic_table">
-                    <div class="cell" id="60A" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="60B" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="60C" mom="" class="dynamic_table_child"></div>
-                    <div class="cell" id="60D" mom="" class="dynamic_table_child"></div>
-                    <div class="dynamic_table_child"><br></div>
-                </div>
-                <div class="extra_list"><br></div>
-        </div>
-    </div>
-
-
-    <div class="extern" id="extern"></div>
-    </div>
-    <script type="text/javascript" src="./static/js/course.js"></script>
-    <script type="text/javascript" src="./static/js/table.js"></script>
-</body>
+        <script type="text/javascript" src="./static/js/course.js"></script>
+        <script type="text/javascript" src="./static/js/table.js"></script>
+    </body>
 </html>

@@ -4,7 +4,7 @@ html {
 
 body {
     background-color:#666;
-    margin: 0;
+    margin: 0px;
 }
 
 #base_container {
@@ -26,89 +26,90 @@ body {
     line-height: 10px;
 }
 
-#content_container{
+#content_container {
     display: block;
-    width:1300px;
-    padding:0;
-    margin: 0;
+    width: 1300px;
+    padding: 0px;
+    margin: 0px;
 }
 
 /* Sidebar */
-#list_title_1{
-    display:inline-block;
+#list_title_1 {
+    display: inline-block;
     position: relative;
-    top:-10px;
-    margin:0px;
-    width:80px;
-    height:30px;
+    top: -10px;
+    width: 80px;
+    height: 30px;
+    margin: 0px;
     background-color: #DEDEDE;
     border-radius: 0px 0px 0px 0px;
     text-align: center;
-    z-index:4;
-    margin:0px;
+    z-index: 4;
 }
 
-#list_title_2{
+#list_title_2 {
+    background-color: #888888;
     display: inline-block;
     position: relative;
-    top:-10px;
-    right:5px;
-    background-color: #888888;
-    margin:0px;
-    width:95px;
-    height:30px;
+    top: -10px;
+    right: 5px;
+    width: 95px;
+    height: 30px;
+    margin: 0px;
     text-align: center;
     border-radius: 5px 0px 0px 0px;
-    margin:0px;
-    box-shadow: inset 0px 0px 3px ;
+    box-shadow: inset 0px 0px 3px;
     z-index: 3;
 }
 
-#list_title_3{
+#list_title_3 {
+    background-color: #888888;
     display: inline-block;
     position: relative;
-    top:-10px;
-    right:10px;
-    background-color: #888888;
-    margin:0px;
-    width:95px;
-    height:30px;
+    top: -10px;
+    right: 10px;
+    width: 95px;
+    height: 30px;
+    margin: 0px;
     text-align: center;
-    box-shadow: inset 0px 0px 3px ;
+    box-shadow: inset 0px 0px 3px;
     z-index: 2;
 }
-#obligatory{
+
+#obligatory {
     display: inline-block;
     position: relative;
     height: 100%;
 }
-#elective{
+
+#elective {
     display: none;
     position: relative;
     height: 100%;
 }
+
 #selected {
     display: none;
     position: relative;
     height: 100%;
 }
 
-#sidebar{
+#sidebar {
     display: inline-block;
     position: relative;
-    width:300px;
-    padding:0px;
+    width: 300px;
+    padding: 0px;
     vertical-align: top;
     overflow: auto;
 }
 
-#selector_container{
-    position:relative;
-    top:10px;
-    height:50px;
+#selector_container {
+    position: relative;
+    top: 10px;
+    height: 50px;
 }
 
-.list_container{
+.list_container {
     display: inline-block;
     position: relative;
     width: 300px;
@@ -116,15 +117,16 @@ body {
     z-index: 6;
 }
 
-#list_title{
-    display:inline-block;
+#list_title {
+    background-color: #DDD;
+    display: inline-block;
     width: 300px;
     height: 70px;
-    background-color:#DDD;
 
 }
-#list_title div{
-    text-algin: center;
+
+#list_title div {
+    text-align: center;
 }
 
 .list{
@@ -139,33 +141,31 @@ body {
     box-shadow: inset 0px 0px 15px;
     border-style: solid;
     border-color: #007AFA;
-    line-height:540px;
+    line-height: 540px;
 }
 
 .course{
     display: block;
     padding-top: 3px;
-    padding-left:11px;
+    padding-left: 11px;
     list-style-type: none;
-
 }
 
 .course li {
-    padding-bottom:0px;
+    padding-bottom: 0px;
     font-size: 11px;
-    text-align:left;
+    text-align: left;
     border-bottom: 1px dotted;
-
 }
 
 /* Cell Blocks */
-#form{
+#form {
     display: inline-block;
     position: relative;
     width: 60%;
+    margin-left: 10px;
     white-space: 0xp;
     vertical-align: top;
-    margin-left: 10px;
 }
 
 #time {
@@ -183,12 +183,12 @@ body {
     border-color: #666 !important;
 }
 
-.column{
+.column {
     display: inline-block;
     width: 12%;
-    padding: 0;
-    margin: 0;
-    font-size:9px;
+    padding: 0px;
+    margin: 0px;
+    font-size: 9px;
 }
 
 .column:nth-child(2) .cell {
@@ -205,14 +205,22 @@ body {
     border-top:0px solid #ccc;
 }
 
-.cell:nth-last-child(1){
+.cell:nth-last-child(1) {
     background-color: rgba(100,100,100,0);
     border:0px;
 }
 
-.extra_list {
+.dynamic_table {
+    display: none;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+.clearfix {
     visibility: hidden;
 }
+
 
 .extern {
     background-color: #EEEEEE;
@@ -222,22 +230,4 @@ body {
     border-width: 2px;
     padding: 3px;
     z-Index: 200;
-}
-
-.dynamic_table{
-    transition:3s;
-    display:none;
-    margin:0px;
-    padding:0px;
-    border:0px;
-}
-
-.dynamic_table_child{
-    background-color: #DEDEDE;
-    display: block;
-    height: 0px;
-    width: 100px;
-    text-align: center;
-    border:3px solid #EDEDED;
-    border-bottom:3px solid #ccc;
 }
