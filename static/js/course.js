@@ -12,11 +12,9 @@ function ajax_Fetch(HOST, DIR) {
         } else if (xhr.readyState == 4) {
             response = xhr.responseText;
         }
-    }
+    };
 
     var dateList = Date().toString().split(" ");
-    //    var filename = dateList[1] + "-" + dateList[2] + "-" + dateList[3];
-    //    var url = HOST + DIR + filename + ".json";
     var url = HOST + DIR + ".json";
 
     xhr.open("GET", url, false);
@@ -67,10 +65,7 @@ function selectionChange_School(sel) {
             document.getElementById(acctime).setAttribute("mom", "");
         }
     }
-    document.getElementById("oblig_list").style.lineHeight = "normal";
-    document.getElementById("elect_list").style.lineHeight = "normal";
-    document.getElementById("selec_list").style.lineHeight = "normal";
-    document.getElementById("selec_list").innerHTML = "<ul class='course'></ul>";
+    document.getElementById("selected").innerHTML = "<ul class='course'></ul>";
     document.getElementById("extern").style.display = "none";
 
     selectionChange();
@@ -93,8 +88,8 @@ function selectionChange() {
                     "</span></li>";
 
                 var flag = 1;
-                for (j = 0; j < document.getElementById("selec_list").children[0].children.length; j++) {
-                    if (i == parseInt(document.getElementById("selec_list").children[0].children[j].getAttribute("inx"), 10)) {
+                for (j = 0; j < document.getElementById("selected").children.length; j++) {
+                    if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"), 10)) {
                         flag = 0;
                     }
                 }
@@ -111,8 +106,8 @@ function selectionChange() {
                     "</span></li>";
 
                 var flag = 1;
-                for (j = 0; j < document.getElementById("selec_list").children[0].children.length; j++) {
-                    if (i == parseInt(document.getElementById("selec_list").children[0].children[j].getAttribute("inx"))) {
+                for (j = 0; j < document.getElementById("selected").children.length; j++) {
+                    if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"))) {
                         flag = 0;
                     }
                 }
@@ -123,14 +118,14 @@ function selectionChange() {
         }
     }
     out += "</ul>";
-    document.getElementById("oblig_list").innerHTML = out;
-    document.getElementById("elect_list").innerHTML = opt_out;
+    document.getElementById("obligatory").innerHTML = out;
+    document.getElementById("elective").innerHTML = opt_out;
     var subjects = document.getElementsByClassName("subject");
     for (j = 0; j < subjects.length; j++) {
         subjects[j].addEventListener('mouseover', function() {hover_Course(this)}, false);
         subjects[j].addEventListener('mouseout', function() {out_Course(this)}, false);
-        subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
         subjects[j].addEventListener('mouseup', function() {up_Course(this)}, false);
+        subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
     }
 }
 
@@ -164,26 +159,17 @@ function hover_Course(course) {
             }
         }
     }
-    course.style.backgroundColor = "#CCC";
 }
 
 function out_Course(course) {
     course.style.backgroundColor = "";
+    var times = {10: "N", 11: "A", 12: "B", 13: "C", 14: "D"};
     for (i = 1; i <= 6; i++) {
         for (j = 1; j <= 14; j++) {
-            var acctime = j.toString();
-            acctime = "0" + acctime;
-            acctime = i.toString() + acctime;
-            if (j == 10) {
-                acctime = i.toString() + "0N";
-            } else if (j == 11) {
-                acctime = i.toString() + "0A";
-            } else if (j == 12) {
-                acctime = i.toString() + "0B";
-            } else if (j == 13) {
-                acctime = i.toString() + "0C";
-            } else if (j == 14) {
-                acctime = i.toString() + "0D";
+            if (j < 10) {
+                var acctime = i.toString() + "0" + j.toString();
+            } else {
+                var acctime = i.toString() + "0" + times[j];
             }
 
             if (document.getElementById(acctime).innerHTML == "") {
@@ -198,25 +184,12 @@ function out_Course(course) {
 
 function dyn_ext() {
     var flag = 1;
+    var times = {10: "N", 11: "A", 12: "B", 13: "C", 14: "D"};
     for (i = 1; i <= 6; i++) {
         for (j = 10; j <= 14; j++) {
-            var acctime;
-            if (j == 10) {
-                acctime = i.toString() + "0N";
-            } else if (j == 11) {
-                acctime = i.toString() + "0A";
-            } else if (j == 12) {
-                acctime = i.toString() + "0B";
-            } else if (j == 13) {
-                acctime = i.toString() + "0C";
-            } else if (j == 14) {
-                acctime = i.toString() + "0D";
-            }
-
+            var acctime = i.toString() + "0" + times[j];
             if (document.getElementById(acctime).innerHTML != "") {
-                if (j >= 11 && j <= 14) {
-                    flag = 0;
-                }
+                flag = 0;
             }
         }
     }
@@ -226,6 +199,10 @@ function dyn_ext() {
             dynamic_tables[i].style.display = "none";
         }
     }
+}
+
+function up_Course(course) {
+    course.style.backgroundColor = "#CCC";
 }
 
 function down_Course(course) {
@@ -267,13 +244,17 @@ function down_Course(course) {
                 block.setAttribute("mom", course.getAttribute("inx"));
             }
 
-            var app = "<li class='subject' active='1' onmouseover='hover_Course(this)'" +
-                " onmouseout='out_Course(this)'" +
-                " onmousedown='down_Course(this)'" +
-                " onmouseup='up_Course(this)' time='" +
+            var app = "<li class='subject' active='1' time='" +
                 raw + "' child='" + course.getAttribute("child") + "' inx='" + course.getAttribute("inx") + "'>" +
                 course.innerHTML + "</li>";
-            document.getElementById("selec_list").children[0].innerHTML += app;
+
+            document.getElementById("selected").children[0].innerHTML += app;
+
+            var subjects = document.getElementById("selected").children[0].children;
+            for (i = 0; i < subjects.length; i++) {
+                subjects[i].addEventListener('mouseout', function() {out_Course(this)}, false);
+                subjects[i].addEventListener('mousedown', function() {down_Course(this)}, false);
+            }
             course.style.display = "none";
         }
     } else {
@@ -292,13 +273,13 @@ function down_Course(course) {
                 block.innerHTML = "";
                 block.setAttribute("mom", "");
             }
-            var list = document.getElementById("oblig_list").children[0].children;
+            var list = document.getElementById("obligatory").children[0].children;
             for (i = 0; i < list.length; i++) {
                 if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
                     list[i].style.display = "list-item";
                 }
             }
-            list = document.getElementById("elect_list").children[0].children;
+            var list = document.getElementById("elective").children[0].children;
             for (i = 0; i < list.length; i++) {
                 if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
                     list[i].style.display = "list-item";
@@ -311,18 +292,14 @@ function down_Course(course) {
     }
 }
 
-function up_Course(course) {
-    course.style.backgroundColor = "#CCC";
-}
-
 function click_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selec_list");
-    var obl = document.getElementById("oblig_list");
-    var opt = document.getElementById("elect_list");
-    for (i = 0; i < obl.children[0].children.length; i++) {
-        if (obl.children[0].children[i].getAttribute("inx") == target) {
-            var raw = obl.children[0].children[i].getAttribute("time").trim();
+    var list = document.getElementById("selected").children[0];
+    var obl = document.getElementById("obligatory").children[0];
+    var opt = document.getElementById("elective").children[0];
+    for (i = 0; i < obl.children.length; i++) {
+        if (obl.children[i].getAttribute("inx") == target) {
+            var raw = obl.children[i].getAttribute("time").trim();
             var time = raw.split(",");
             for (k in time) {
                 var weekday = parseInt(time[k], 10).toString().substring(0, 1);
@@ -338,12 +315,12 @@ function click_Block(block) {
                     block.setAttribute("mom", "");
                 }
             }
-            obl.children[0].children[i].style.display = "list-item";
+            obl.children[i].style.display = "list-item";
         }
     }
-    for (i = 0; i < opt.children[0].children.length; i++) {
-        if (opt.children[0].children[i].getAttribute("inx") == target) {
-            var raw = opt.children[0].children[i].getAttribute("time").trim();
+    for (i = 0; i < opt.children.length; i++) {
+        if (opt.children[i].getAttribute("inx") == target) {
+            var raw = opt.children[i].getAttribute("time").trim();
             var time = raw.split(",");
             for (k in time) {
                 var weekday = parseInt(time[k], 10).toString().substring(0, 1);
@@ -359,13 +336,13 @@ function click_Block(block) {
                     block.setAttribute("mom", "");
                 }
             }
-            opt.children[0].children[i].style.display = "list-item";
+            opt.children[i].style.display = "list-item";
         }
     }
 
-    for (i = 0; i < list.children[0].children.length; i++) {
-        if (list.children[0].children[i].getAttribute("inx") == target) {
-            var raw = list.children[0].children[i].getAttribute("time").trim();
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var raw = list.children[i].getAttribute("time").trim();
             var time = raw.split(",");
             for (k in time) {
                 var weekday = parseInt(time[k], 10).toString().substring(0, 1);
@@ -381,7 +358,7 @@ function click_Block(block) {
                     block.setAttribute("mom", "");
                 }
             }
-            list.children[0].children[i].style.display = "none";
+            list.children[i].style.display = "none";
         }
     }
     document.getElementById("extern").style.display = "none";
@@ -390,12 +367,15 @@ function click_Block(block) {
 
 function hover_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selec_list");
-    for (i = 0; i < list.children[0].children.length; i++) {
-        if (list.children[0].children[i].getAttribute("inx") == target) {
-            var raw = list.children[0].children[i].getAttribute("time").trim();
+    var list = document.getElementById("selected").children[0];
+    if (!list) {
+        return;
+    }
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var raw = list.children[i].getAttribute("time").trim();
             var time = raw.split(",");
-            list.children[0].children[i].style.backgroundColor = "#CCC";
+            list.children[i].style.backgroundColor = "#CCC";
             for (k in time) {
                 var weekday = parseInt(time[k], 10).toString().substring(0, 1);
                 for (j = 1; j < time[k].length; j++) {
@@ -414,12 +394,15 @@ function hover_Block(block) {
 
 function out_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selec_list");
-    for (i = 0; i < list.children[0].children.length; i++) {
-        if (list.children[0].children[i].getAttribute("inx") == target) {
-            var raw = list.children[0].children[i].getAttribute("time").trim();
+    var list = document.getElementById("selected").children[0];
+    if (!list) {
+        return;
+    }
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var raw = list.children[i].getAttribute("time").trim();
             var time = raw.split(",");
-            list.children[0].children[i].style.backgroundColor = "";
+            list.children[i].style.backgroundColor = "";
             for (k in time) {
                 var weekday = parseInt(time[k], 10).toString().substring(0, 1);
                 for (j = 1; j < time[k].length; j++) {
