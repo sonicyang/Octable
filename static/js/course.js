@@ -465,6 +465,10 @@ function title1() {
     document.getElementById('obligatory').style.display = 'none';
     document.getElementById("elective").style.display = "none";
     document.getElementById('selected').style.display = 'inline-block';
+    var legends = document.getElementsByClassName("legend");
+    for (i = 0; i < legends.length; i++) {
+        legends[i].style.display = "none";
+    }
     title1.style.zIndex = "5";
     title2.style.zIndex = "4";
     title1.style["boxShadow"] = "0px 0px 0px";
@@ -485,6 +489,10 @@ function title2() {
     document.getElementById("obligatory").style.display = "inline-block";
     document.getElementById("elective").style.display = "inline-block";
     document.getElementById('selected').style.display = 'none';
+    var legends = document.getElementsByClassName("legend");
+    for (i = 0; i < legends.length; i++) {
+        legends[i].style.display = "block";
+    }
     title1.style.zIndex = "4";
     title2.style.zIndex = "5";
     title2.style["boxShadow"] = "0px 0px 0px";

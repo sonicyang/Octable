@@ -70,7 +70,6 @@ body {
 #selector_container {
     display: block;
     position: relative;
-    margin-bottom: 30px;
 }
 
 #search_by_code {
@@ -126,17 +125,26 @@ body {
 
 .list_container {
     background-color: #EAEAEA;
-    display: block;
-    position: relative;
     width: 90%;
     height: 210px;
-    line-height: 540px;
-    padding :3px;
-    z-index: 6;
-    text-align: center;
+    margin-left: 7px;
+    margin-bottom: 13px;
+    padding: 3px;
     border: 3px dotted #789871;
     box-shadow: inset 0px 0px 15px;
     overflow-y: auto;
+}
+
+.course_container h1 {
+    display: block;
+    position: relative;
+    width: 30px;
+    float: left;
+    z-index: 5;
+    margin-bottom: -10px;
+    margin-left: 1.5em;
+    font-size: 13px;
+    text-shadow: 1px 1px 3px #FFF;
 }
 
 .course{
