@@ -4,7 +4,6 @@ document.getElementById("grade").addEventListener("change", selectionChange, fal
 
 document.getElementById("list_title_1").addEventListener("click", title1, false);
 document.getElementById("list_title_2").addEventListener("click", title2, false);
-document.getElementById("list_title_3").addEventListener("click", title3, false);
 
 var cells = document.getElementsByClassName("cell");
 for (i = 0; i < cells.length; i++) {

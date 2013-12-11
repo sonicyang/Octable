@@ -458,62 +458,39 @@ function oneclick_Block(block, event) {
 function title1() {
     var title1 = document.getElementById('list_title_1');
     var title2 = document.getElementById('list_title_2');
-    var title3 = document.getElementById('list_title_3');
-    document.getElementById('obligatory').style.display = 'inline-block';
+    var selector = document.getElementById('selector_container');
+    selector.style.display = 'none';
+    var search_box = document.getElementById('search_by_code');
+    search_box.style.display = 'inline-block';
+    document.getElementById('obligatory').style.display = 'none';
     document.getElementById("elective").style.display = "none";
-    document.getElementById('selected').style.display = 'none';
+    document.getElementById('selected').style.display = 'inline-block';
     title1.style.zIndex = "5";
     title2.style.zIndex = "4";
-    title3.style.zIndex = "3";
     title1.style["boxShadow"] = "0px 0px 0px";
     title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title3.style["boxShadow"] = "inset 0px 0px 3px ";
     title1.style["backgroundColor"] = "#DEDEDE";
     title2.style["backgroundColor"] = "#888888";
-    title3.style["backgroundColor"] = "#888888";
     title1.style["borderRadius"] = "0px 0px 0px 0px";
     title2.style["borderRadius"] = "5px 0px 0px 0px";
-    title3.style["borderRadius"] = "0px 0px 0px 0px";
 }
 
 function title2() {
     var title1 = document.getElementById('list_title_1');
     var title2 = document.getElementById('list_title_2');
-    var title3 = document.getElementById('list_title_3');
-    document.getElementById("obligatory").style.display = "none";
+    var selector = document.getElementById('selector_container');
+    selector.style.display = 'block';
+    var search_box = document.getElementById('search_by_code');
+    search_box.style.display = 'none';
+    document.getElementById("obligatory").style.display = "inline-block";
     document.getElementById("elective").style.display = "inline-block";
     document.getElementById('selected').style.display = 'none';
     title1.style.zIndex = "4";
     title2.style.zIndex = "5";
-    title3.style.zIndex = "3";
     title2.style["boxShadow"] = "0px 0px 0px";
     title1.style["boxShadow"] = "inset 0px 0px 3px ";
-    title3.style["boxShadow"] = "inset 0px 0px 3px ";
     title1.style["backgroundColor"] = "#888888";
     title2.style["backgroundColor"] = "#DEDEDE";
-    title3.style["backgroundColor"] = "#888888";
     title2.style["borderRadius"] = "0px 0px 0px 0px";
     title1.style["borderRadius"] = "0px 5px 0px 0px";
-    title3.style["borderRadius"] = "5px 0px 0px 0px";
-}
-
-function title3() {
-    var title1 = document.getElementById('list_title_1');
-    var title2 = document.getElementById('list_title_2');
-    var title3 = document.getElementById('list_title_3');
-    document.getElementById("obligatory").style.display = "none";
-    document.getElementById("elective").style.display = "none";
-    document.getElementById('selected').style.display = 'inline-block';
-    title1.style.zIndex = "3";
-    title2.style.zIndex = "4";
-    title3.style.zIndex = "5";
-    title3.style["boxShadow"] = "0px 0px 0px";
-    title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["backgroundColor"] = "#888888";
-    title2.style["backgroundColor"] = "#888888";
-    title3.style["backgroundColor"] = "#DEDEDE";
-    title3.style["borderRadius"] = "0px 0px 0px 0px";
-    title2.style["borderRadius"] = "0px 5px 0px 0px";
-    title1.style["borderRadius"] = "0px 0px 0px 0px";
 }

@@ -16,6 +16,18 @@
         <div id="content_container">
             <div id="sidebar">
                 <div id="list_title">
+                    <div id="list_title_1">我的課程</div>
+                    <div id="list_title_2">系所課程</div>
+                </div>
+
+                <div class="course_container" id="my_courses">
+                    <form>
+                        <input id="search_by_code" type="search" placeholder="Search by code">
+                    </form>
+                    <div class="list_container" id="selected"></div>
+                </div>
+
+                <div class="course_container" id="dept_courses">
                     <div id="selector_container">
                         <select id="school">
                             <option value="0">請選學校</option>
@@ -33,13 +45,9 @@
                             <option value="4">四</option>
                         </select>
                     </div>
-                    <div id="list_title_1">必修課程</div>
-                    <div id="list_title_2">選修課程</div>
-                    <div id="list_title_3">已選課程</div>
+                    <div class="list_container" id="obligatory"></div>
+                    <div class="list_container" id="elective"></div>
                 </div>
-                <div class="list_container" id="obligatory">請選擇學校與科系</div>
-                <div class="list_container" id="elective">請選擇學校與科系</div>
-                <div class="list_container" id="selected"></div>
             </div>
             <div id="form">
                 <div class="column" id="time">
