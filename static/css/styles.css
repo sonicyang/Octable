@@ -1,9 +1,11 @@
 html {
+    height: 100%;
     overflow-x: hidden;
 }
 
 body {
     background-color:#666;
+    height: 100%;
     margin: 0px;
 }
 
@@ -15,7 +17,8 @@ body {
 #header {
     background-color: #EBEBEB;
     width: 100%;
-    margin: 0 0 1em 0;
+    height: 48px;
+    margin-bottom: -48px;
     padding: 0;
     box-shadow: 1px 1px 3px #141414;
 }
@@ -29,8 +32,10 @@ body {
 #content_container {
     display: block;
     width: 1300px;
-    padding: 0px;
+    height: 100%;
+    padding-top: 60px;
     margin: 0px;
+    box-sizing: padding-box;
 }
 
 /* Sidebar */
@@ -52,15 +57,17 @@ body {
 #sidebar {
     display: inline-block;
     position: relative;
-    height: 80%;
+    height: 100%;
     padding: 0px;
     vertical-align: top;
+    box-sizing: padding-box;
 }
 
 #list_title {
     display: inline-block;
     position: relative;
     width: 300px;
+    height: 32px;
 }
 
 #list_title div {
@@ -70,6 +77,7 @@ body {
 #selector_container {
     display: block;
     position: relative;
+    line-height: 24px;
 }
 
 #search_by_code {
@@ -92,7 +100,7 @@ body {
 }
 
 #list_title_2 {
-    background-color: #DEDEDE;
+    background-color: #EAEAEA;
     display: inline-block;
     position: relative;
     right: 5px;
@@ -121,6 +129,11 @@ body {
     background-color: #EBEBEB;
     height: 100%;
     width: 300px;
+    overflow: auto;
+}
+
+#my_courses {
+    display: none;
 }
 
 .list_container {

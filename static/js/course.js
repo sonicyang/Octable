@@ -473,7 +473,7 @@ function title1() {
     title2.style.zIndex = "4";
     title1.style["boxShadow"] = "0px 0px 0px";
     title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["backgroundColor"] = "#DEDEDE";
+    title1.style["backgroundColor"] = "#EAEAEA";
     title2.style["backgroundColor"] = "#888888";
     title1.style["borderRadius"] = "0px 0px 0px 0px";
     title2.style["borderRadius"] = "5px 0px 0px 0px";
