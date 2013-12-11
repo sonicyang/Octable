@@ -144,6 +144,15 @@ body {
     line-height: 540px;
 }
 
+.subject span:nth-child(1) {
+    display: block;
+}
+
+.subject span:nth-child(2) {
+    display: block;
+    padding-left: 20px;
+}
+
 .course{
     display: block;
     padding-top: 3px;
