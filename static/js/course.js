@@ -60,6 +60,9 @@ function selectSchool(selection) {
     // Clear form data when switching between schools
     var cells = document.getElementsByClassName("cell");
     for (i = 0; i < cells.length; i++) {
+        if (cells[i].id[0] == "0" || cells[i].id[2] == "0") {
+            continue;
+        }
         cells[i].style.backgroundColor = "";
         cells[i].innerHTML = "";
         cells[i].setAttribute("mom", "");
@@ -131,35 +134,33 @@ function selectionChange() {
     // Add event listener to each subject in list
     var subjects = document.getElementsByClassName("subject");
     for (j = 0; j < subjects.length; j++) {
-        subjects[j].addEventListener('mouseover', function() {hover_Course(this)}, false);
-        subjects[j].addEventListener('mouseout', function() {out_Course(this)}, false);
-        subjects[j].addEventListener('mouseup', function() {up_Course(this)}, false);
+        subjects[j].addEventListener('mouseover', function() {hoverList(this)}, false);
+        subjects[j].addEventListener('mouseout', function() {leaveList(this)}, false);
         subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
     }
 }
 
-function hover_Course(course) {
-    var raw = course.getAttribute("time").trim();
-    var time = raw.split(",");
-    for (i in time) {
-        var weekday = parseInt(time[i], 10).toString().substring(0, 1);
-        for (j = 1; j < time[i].length; j++) {
-            var acctime = time[i].substring(j, j + 1);
+function hoverList(listItem) {
+    var times = listItem.getAttribute("time").trim().split(",");
+    for (i = 0; i < times.length; i++) {
+        for (j = 1; j < times[i].length; j++) {
+            var acctime = times[i][j];
             if (acctime.length == 1) {
                 acctime = "0" + acctime;
             }
             if (acctime == "0A" || acctime == "0B" || acctime == "0C" || acctime == "0D") {
                 var dynamic_tables = document.getElementsByClassName("dynamic_table");
-                for (j = 0; j < dynamic_tables.length; j++) {
-                    dynamic_tables[j].style.display = "block";
+                for (k = 0; k < dynamic_tables.length; k++) {
+                    dynamic_tables[k].style.display = "block";
                 }
             }
-            acctime = weekday + acctime;
+            acctime = times[i][0] + acctime;
+
             if (acctime.length >= 3) {
                 if (document.getElementById(acctime).innerHTML == "") {
                     document.getElementById(acctime).style.backgroundColor = HOVERED;
                 } else {
-                    if (document.getElementById(acctime).getAttribute("mom") == course.getAttribute("inx")) {
+                    if (document.getElementById(acctime).getAttribute("mom") == listItem.getAttribute("inx")) {
                         document.getElementById(acctime).style.backgroundColor = HOVERED;
                     } else {
                         document.getElementById(acctime).style.backgroundColor = CONFLICT;
@@ -170,15 +171,15 @@ function hover_Course(course) {
     }
 }
 
-function out_Course(course) {
-    course.style.backgroundColor = "";
+function leaveList(listItem) {
+    listItem.style.backgroundColor = "";
     var times = {10: "N", 11: "A", 12: "B", 13: "C", 14: "D"};
     for (i = 1; i <= 6; i++) {
         for (j = 1; j <= 14; j++) {
             if (j < 10) {
-                var acctime = i.toString() + "0" + j.toString();
+                var acctime = i + "0" + j
             } else {
-                var acctime = i.toString() + "0" + times[j];
+                var acctime = i + "0" + times[j];
             }
 
             if (document.getElementById(acctime).innerHTML == "") {
@@ -208,10 +209,6 @@ function dyn_ext() {
             dynamic_tables[i].style.display = "none";
         }
     }
-}
-
-function up_Course(course) {
-    course.style.backgroundColor = "#CCC";
 }
 
 function down_Course(course) {
@@ -261,7 +258,7 @@ function down_Course(course) {
 
             var subjects = document.getElementById("selected").children[0].children;
             for (i = 0; i < subjects.length; i++) {
-                subjects[i].addEventListener('mouseout', function() {out_Course(this)}, false);
+                subjects[i].addEventListener('mouseout', function() {leaveList(this)}, false);
                 subjects[i].addEventListener('mousedown', function() {down_Course(this)}, false);
             }
             course.style.display = "none";
