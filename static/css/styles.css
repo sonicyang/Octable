@@ -100,7 +100,7 @@ body {
 }
 
 #list_title_2 {
-    background-color: #EAEAEA;
+    background-color: #EBEBEB;
     display: inline-block;
     position: relative;
     right: 5px;
@@ -148,10 +148,9 @@ body {
     overflow-y: auto;
 }
 
-.course_container h1 {
+.legend {
     display: block;
     position: relative;
-    width: 30px;
     float: left;
     z-index: 5;
     margin-bottom: -10px;

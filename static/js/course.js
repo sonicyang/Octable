@@ -4,7 +4,7 @@ var SELECTED = "#D6B86D";
 var CONFLICT = "#FF1C2D";
 var HOVERED = "#ADC7C5";
 
-function ajax_Fetch(HOST, DIR) {
+function fetchAJAX(HOST, DIR) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.status == 404) {
@@ -27,23 +27,28 @@ function ajax_Fetch(HOST, DIR) {
     return JSON.parse(xhr.responseText);
 }
 
-function selectionChange_School(sel) {
-    var host = window.location.toString();
-    var school = sel.options[sel.selectedIndex].value;
-    var datapath = "/static/data/" + school + "/" + school.toString();
-    data = ajax_Fetch(host, datapath);
+function selectSchool(selection) {
+    var HOST = window.location.toString();
+    var SCHOOL = selection.options[selection.selectedIndex].value;
+    var DATAPATH = "/static/data/" + SCHOOL + "/" + SCHOOL;
+    data = fetchAJAX(HOST, DATAPATH);
+
+    // Reset grade
     document.getElementById("grade").value = 0;
+
+    // Put departments into select > option
     var department = document.getElementById("department");
     department.innerHTML = "";
+
     for (i = 0; i < data.length; i++) {
-        var value = data[i]['department'];
         var flag = 1;
+        var value = data[i]['department'];
         for (j = 0; j < i; j++) {
             if (value == data[j]['department']) {
                 flag = 0;
             }
         }
-        //adjustment for trash values
+        //Skip trash values in NCHU
         if (value == "開課單位" || value == " ") {
             flag = 0;
         }
@@ -52,32 +57,37 @@ function selectionChange_School(sel) {
         }
     }
 
-    for (i = 1; i <= 6; i++) {
-        for (j = 1; j <= 10; j++) {
-            var acctime = j.toString();
-            acctime = "0" + acctime;
-            acctime = i.toString() + acctime;
-            if (j == 10) {
-                acctime = i.toString() + "0N";
-            }
-            document.getElementById(acctime).style.backgroundColor = "";
-            document.getElementById(acctime).innerHTML = "";
-            document.getElementById(acctime).setAttribute("mom", "");
-        }
+    // Clear form data when switching between schools
+    var cells = document.getElementsByClassName("cell");
+    for (i = 0; i < cells.length; i++) {
+        cells[i].style.backgroundColor = "";
+        cells[i].innerHTML = "";
+        cells[i].setAttribute("mom", "");
+        // Add event listener to each cell
+        cells[i].addEventListener("click", function() {oneclick_Block(this, event)}, false);
+        cells[i].addEventListener("dblclick", function() {click_Block(this)}, false);
+        cells[i].addEventListener("mouseover", function() {hover_Block(this)}, false);
+        cells[i].addEventListener("mouseout", function() {out_Block(this)}, false);
+
     }
-    document.getElementById("selected").innerHTML = "<ul class='course'></ul>";
     document.getElementById("extern").style.display = "none";
 
     selectionChange();
 }
 
 function selectionChange() {
-    var out = "<ul class='course'>";
-    var opt_out = "<ul class='course'>";
+    var oblItems = "";
+    var eleItems = "";
+
     for (i = 0; i < data.length; i++) {
-        var dpm = data[i]['department'];
         var grade = parseInt(data[i]['grade'], 10);
-        if (dpm == document.getElementById("department").value && (grade == document.getElementById("grade").value || document.getElementById("grade").value == 0)) {
+        if (grade != document.getElementById("grade").value && document.getElementById("grade").value != 0) {
+            continue;
+        }
+
+        var flag = 1;
+        var dpm = data[i]['department'];
+        if (dpm == document.getElementById("department").value) {
             if (data[i]['obligatory'] == "必修") {
                 var junction = "<li class='subject' active='0' time='" +
                     data[i]['time'].trim() + "' child=' " + data[i]['code'] + " <span>" +
@@ -87,14 +97,13 @@ function selectionChange() {
                     "<span>授課教授:" + data[i]['professor'] + "  學分數:" + data[i]['credits'] +
                     "</span></li>";
 
-                var flag = 1;
                 for (j = 0; j < document.getElementById("selected").children.length; j++) {
                     if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"), 10)) {
                         flag = 0;
                     }
                 }
                 if (flag) {
-                    out += junction;
+                    oblItems += junction;
                 }
             } else {
                 var junction = "<li class='subject' active='0' time='" +
@@ -105,21 +114,21 @@ function selectionChange() {
                     "<span>授課教授:" + data[i]['professor'] + "  學分數:" + data[i]['credits'] +
                     "</span></li>";
 
-                var flag = 1;
                 for (j = 0; j < document.getElementById("selected").children.length; j++) {
                     if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"))) {
                         flag = 0;
                     }
                 }
                 if (flag) {
-                    opt_out += junction;
+                    eleItems += junction;
                 }
             }
         }
     }
-    out += "</ul>";
-    document.getElementById("obligatory").innerHTML = out;
-    document.getElementById("elective").innerHTML = opt_out;
+    document.getElementById("obligatory").children[0].innerHTML = oblItems;
+    document.getElementById("elective").children[0].innerHTML = eleItems;
+
+    // Add event listener to each subject in list
     var subjects = document.getElementsByClassName("subject");
     for (j = 0; j < subjects.length; j++) {
         subjects[j].addEventListener('mouseover', function() {hover_Course(this)}, false);
@@ -456,43 +465,62 @@ function oneclick_Block(block, event) {
 
 //toyo
 function title1() {
-    var title1 = document.getElementById('list_title_1');
-    var title2 = document.getElementById('list_title_2');
-    var selector = document.getElementById('selector_container');
-    selector.style.display = 'none';
-    var search_box = document.getElementById('search_by_code');
-    search_box.style.display = 'inline-block';
+    document.getElementById('my_courses').style.display = 'block';
+    document.getElementById('dept_courses').style.display = 'none';
+
+    document.getElementById('selector_container').style.display = 'none';
+    document.getElementById('search_by_code').style.display = 'inline-block';
+
     document.getElementById('obligatory').style.display = 'none';
     document.getElementById("elective").style.display = "none";
     document.getElementById('selected').style.display = 'inline-block';
-    var legends = document.getElementsByClassName("legend");
+
+
+    var legends = document.getElementsByClassName("dept_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "none";
     }
+
+    var legends = document.getElementsByClassName("my_c");
+    for (i = 0; i < legends.length; i++) {
+        legends[i].style.display = "block";
+    }
+
+    var title1 = document.getElementById('list_title_1');
+    var title2 = document.getElementById('list_title_2');
     title1.style.zIndex = "5";
     title2.style.zIndex = "4";
     title1.style["boxShadow"] = "0px 0px 0px";
     title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["backgroundColor"] = "#EAEAEA";
+    title1.style["backgroundColor"] = "#EBEBEB";
     title2.style["backgroundColor"] = "#888888";
     title1.style["borderRadius"] = "0px 0px 0px 0px";
     title2.style["borderRadius"] = "5px 0px 0px 0px";
 }
 
 function title2() {
-    var title1 = document.getElementById('list_title_1');
-    var title2 = document.getElementById('list_title_2');
-    var selector = document.getElementById('selector_container');
-    selector.style.display = 'block';
-    var search_box = document.getElementById('search_by_code');
-    search_box.style.display = 'none';
+    document.getElementById('dept_courses').style.display = 'block';
+    document.getElementById('my_courses').style.display = 'none';
+
+    document.getElementById('selector_container').style.display = 'block';
+    document.getElementById('search_by_code').style.display = 'none';
+
     document.getElementById("obligatory").style.display = "inline-block";
     document.getElementById("elective").style.display = "inline-block";
     document.getElementById('selected').style.display = 'none';
-    var legends = document.getElementsByClassName("legend");
+
+    var legends = document.getElementsByClassName("my_c");
+    for (i = 0; i < legends.length; i++) {
+        legends[i].style.display = "none";
+    }
+
+    var legends = document.getElementsByClassName("dept_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "block";
     }
+
+    var title1 = document.getElementById('list_title_1');
+    var title2 = document.getElementById('list_title_2');
     title1.style.zIndex = "4";
     title2.style.zIndex = "5";
     title2.style["boxShadow"] = "0px 0px 0px";

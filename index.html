@@ -24,7 +24,10 @@
                     <form>
                         <input id="search_by_code" type="search" placeholder="Search by code">
                     </form>
-                    <div class="list_container" id="selected"></div>
+                    <h1 class="my_c legend">已選擇</h1>
+                    <div class="list_container" id="selected">
+                        <ul class="course"></ul>
+                    </div>
                 </div>
 
                 <div class="course_container" id="dept_courses">
@@ -45,10 +48,14 @@
                             <option value="4">四</option>
                         </select>
                     </div>
-                    <h1 class="legend">必修</h1>
-                    <div class="list_container" id="obligatory"></div>
-                    <h1 class="legend">選修</h1>
-                    <div class="list_container" id="elective"></div>
+                    <h1 class="dept_c legend">必修</h1>
+                    <div class="list_container" id="obligatory">
+                        <ul class="course"></ul>
+                    </div>
+                    <h1 class="dept_c legend">選修</h1>
+                    <div class="list_container" id="elective">
+                        <ul class="course"></ul>
+                    </div>
                 </div>
             </div>
             <div id="form">
