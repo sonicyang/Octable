@@ -34,10 +34,10 @@ function selectSchool(selection) {
     data = fetchAJAX(HOST, DATAPATH);
 
     // Reset grade
-    document.getElementById("grade").value = 0;
+    document.querySelector("#grade").value = 0;
 
     // Put departments into select > option
-    var department = document.getElementById("department");
+    var department = document.querySelector("#department");
     department.innerHTML = "";
 
     for (i = 0; i < data.length; i++) {
@@ -58,7 +58,7 @@ function selectSchool(selection) {
     }
 
     // Clear form data when switching between schools
-    var cells = document.getElementsByClassName("cell");
+    var cells = document.querySelectorAll(".cell");
     for (i = 0; i < cells.length; i++) {
         if (cells[i].id[0] == "0" || cells[i].id[2] == "0") {
             continue;
@@ -73,7 +73,7 @@ function selectSchool(selection) {
         cells[i].addEventListener("mouseout", function() {out_Block(this)}, false);
 
     }
-    document.getElementById("extern").style.display = "none";
+    document.querySelector("#extern").style.display = "none";
 
     selectionChange();
 }
@@ -84,13 +84,13 @@ function selectionChange() {
 
     for (i = 0; i < data.length; i++) {
         var grade = parseInt(data[i]['grade'], 10);
-        if (grade != document.getElementById("grade").value && document.getElementById("grade").value != 0) {
+        if (grade != document.querySelector("#grade").value && document.querySelector("#grade").value != 0) {
             continue;
         }
 
         var flag = 1;
         var dpm = data[i]['department'];
-        if (dpm == document.getElementById("department").value) {
+        if (dpm == document.querySelector("#department").value) {
             if (data[i]['obligatory'] == "必修") {
                 var junction = "<li class='subject' active='0' time='" +
                     data[i]['time'].trim() + "' child=' " + data[i]['code'] + " <span>" +
@@ -100,8 +100,8 @@ function selectionChange() {
                     "<span>授課教授:" + data[i]['professor'] + "  學分數:" + data[i]['credits'] +
                     "</span></li>";
 
-                for (j = 0; j < document.getElementById("selected").children.length; j++) {
-                    if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"), 10)) {
+                for (j = 0; j < document.querySelector("#selected").children.length; j++) {
+                    if (i == parseInt(document.querySelector("#selected").children[j].getAttribute("inx"), 10)) {
                         flag = 0;
                     }
                 }
@@ -117,8 +117,8 @@ function selectionChange() {
                     "<span>授課教授:" + data[i]['professor'] + "  學分數:" + data[i]['credits'] +
                     "</span></li>";
 
-                for (j = 0; j < document.getElementById("selected").children.length; j++) {
-                    if (i == parseInt(document.getElementById("selected").children[j].getAttribute("inx"))) {
+                for (j = 0; j < document.querySelector("#selected").children.length; j++) {
+                    if (i == parseInt(document.querySelector("#selected").children[j].getAttribute("inx"))) {
                         flag = 0;
                     }
                 }
@@ -128,11 +128,50 @@ function selectionChange() {
             }
         }
     }
-    document.getElementById("obligatory").children[0].innerHTML = oblItems;
-    document.getElementById("elective").children[0].innerHTML = eleItems;
+    document.querySelector("#obligatory").children[0].innerHTML = oblItems;
+    document.querySelector("#elective").children[0].innerHTML = eleItems;
 
     // Add event listener to each subject in list
-    var subjects = document.getElementsByClassName("subject");
+    var subjects = document.querySelectorAll(".subject");
+    for (j = 0; j < subjects.length; j++) {
+        subjects[j].addEventListener('mouseover', function() {hoverList(this)}, false);
+        subjects[j].addEventListener('mouseout', function() {leaveList(this)}, false);
+        subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
+    }
+}
+
+function searchCode(input) {
+    var count = 0;
+    var len = input.value.toString().length;
+    var searchResult = document.querySelector("#searchResult");
+    var searchList = document.querySelector("#searchList");
+    searchList.innerHTML = "";
+    for (i = 0; i < data.length; i++) {
+        if (count == 25) {
+            break;
+        }
+        if (input.value.toString() == "") {
+            searchResult.style.display = "none";
+            searchList.style.display = "none";
+            break;
+        }
+        if (data[i]["code"].substring(0, len) != input.value.toString()) {
+            continue;
+        } else {
+            searchResult.style.display = "inline-block";
+            searchList.style.display = "block";
+            searchList.innerHTML += "<li class='subject' active='0' time='" +
+                    data[i]['time'].trim() + "' child=' " + data[i]['code'] + " <span>" +
+                    data[i]['title'].split(" ")[0] + "</span>' inx='" + i + "'> " +
+                    "<span><a rel='bookmark' title='課程代碼:" +
+                    data[i]['code'] + "'>" + data[i]['title'].split(" ")[0] + "</a></span>" +
+                    "<span>授課教授:" + data[i]['professor'] + "  學分數:" + data[i]['credits'] +
+                    "</span></li>";
+        }
+        count += 1;
+    }
+        // Add event listener to each subject in list
+    var subjects = document.querySelectorAll(".subject");
     for (j = 0; j < subjects.length; j++) {
         subjects[j].addEventListener('mouseover', function() {hoverList(this)}, false);
         subjects[j].addEventListener('mouseout', function() {leaveList(this)}, false);
@@ -149,7 +188,7 @@ function hoverList(listItem) {
                 acctime = "0" + acctime;
             }
             if (acctime == "0A" || acctime == "0B" || acctime == "0C" || acctime == "0D") {
-                var dynamic_tables = document.getElementsByClassName("dynamic_table");
+                var dynamic_tables = document.querySelectorAll(".dynamic_table");
                 for (k = 0; k < dynamic_tables.length; k++) {
                     dynamic_tables[k].style.display = "block";
                 }
@@ -204,7 +243,7 @@ function dyn_ext() {
         }
     }
     if (flag) {
-        var dynamic_tables = document.getElementsByClassName("dynamic_table");
+        var dynamic_tables = document.querySelectorAll(".dynamic_table");
         for (i = 0; i < dynamic_tables.length; i++) {
             dynamic_tables[i].style.display = "none";
         }
@@ -254,9 +293,9 @@ function down_Course(course) {
                 raw + "' child='" + course.getAttribute("child") + "' inx='" + course.getAttribute("inx") + "'>" +
                 course.innerHTML + "</li>";
 
-            document.getElementById("selected").children[0].innerHTML += app;
+            document.querySelector("#selected").children[0].innerHTML += app;
 
-            var subjects = document.getElementById("selected").children[0].children;
+            var subjects = document.querySelector("#selected").children[0].children;
             for (i = 0; i < subjects.length; i++) {
                 subjects[i].addEventListener('mouseout', function() {leaveList(this)}, false);
                 subjects[i].addEventListener('mousedown', function() {down_Course(this)}, false);
@@ -279,13 +318,13 @@ function down_Course(course) {
                 block.innerHTML = "";
                 block.setAttribute("mom", "");
             }
-            var list = document.getElementById("obligatory").children[0].children;
+            var list = document.querySelector("#obligatory").children[0].children;
             for (i = 0; i < list.length; i++) {
                 if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
                     list[i].style.display = "list-item";
                 }
             }
-            var list = document.getElementById("elective").children[0].children;
+            var list = document.querySelector("#elective").children[0].children;
             for (i = 0; i < list.length; i++) {
                 if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
                     list[i].style.display = "list-item";
@@ -300,9 +339,9 @@ function down_Course(course) {
 
 function click_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selected").children[0];
-    var obl = document.getElementById("obligatory").children[0];
-    var opt = document.getElementById("elective").children[0];
+    var list = document.querySelector("#selected").children[0];
+    var obl = document.querySelector("#obligatory").children[0];
+    var opt = document.querySelector("#elective").children[0];
     for (i = 0; i < obl.children.length; i++) {
         if (obl.children[i].getAttribute("inx") == target) {
             var raw = obl.children[i].getAttribute("time").trim();
@@ -367,13 +406,13 @@ function click_Block(block) {
             list.children[i].style.display = "none";
         }
     }
-    document.getElementById("extern").style.display = "none";
+    document.querySelector("#extern").style.display = "none";
     dyn_ext();
 }
 
 function hover_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selected").children[0];
+    var list = document.querySelector("#selected").children[0];
     if (!list) {
         return;
     }
@@ -400,7 +439,7 @@ function hover_Block(block) {
 
 function out_Block(block) {
     var target = block.getAttribute("mom");
-    var list = document.getElementById("selected").children[0];
+    var list = document.querySelector("#selected").children[0];
     if (!list) {
         return;
     }
@@ -435,7 +474,7 @@ function oneclick_Block(block, event) {
     var my = event.pageY + 5;
     var di = block.getAttribute("mom");
     if (di != "" && di != last_c) {
-        var ext = document.getElementById("extern");
+        var ext = document.querySelector("#extern");
         ext.style.display = "inline-block";
         ext.style.opacity = "0.75";
         ext.style.left = mx.toString() + "px";
@@ -450,11 +489,11 @@ function oneclick_Block(block, event) {
         last_c = di;
 
     } else if (di == last_c) {
-        var ext = document.getElementById("extern");
+        var ext = document.querySelector("#extern");
         ext.style.display = "none";
         last_c = "";
     } else {
-        var ext = document.getElementById("extern");
+        var ext = document.querySelector("#extern");
         ext.style.display = "none";
         last_c = "";
     }
@@ -462,68 +501,64 @@ function oneclick_Block(block, event) {
 
 //toyo
 function title1() {
-    document.getElementById('my_courses').style.display = 'block';
-    document.getElementById('dept_courses').style.display = 'none';
+    document.querySelector('#my_courses').style.display = 'block';
+    document.querySelector('#dept_courses').style.display = 'none';
 
-    document.getElementById('selector_container').style.display = 'none';
-    document.getElementById('search_by_code').style.display = 'inline-block';
+    document.querySelector('#selector_container').style.display = 'none';
+    document.querySelector('#searchCode').style.display = 'inline-block';
 
-    document.getElementById('obligatory').style.display = 'none';
-    document.getElementById("elective").style.display = "none";
-    document.getElementById('selected').style.display = 'inline-block';
+    document.querySelector('#obligatory').style.display = 'none';
+    document.querySelector("#elective").style.display = "none";
+    document.querySelector('#selected').style.display = 'inline-block';
 
 
-    var legends = document.getElementsByClassName("dept_c");
+    var legends = document.querySelectorAll(".dept_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "none";
     }
 
-    var legends = document.getElementsByClassName("my_c");
+    var legends = document.querySelectorAll(".my_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "block";
     }
 
-    var title1 = document.getElementById('list_title_1');
-    var title2 = document.getElementById('list_title_2');
+    var title1 = document.querySelector('#list_title_1');
+    var title2 = document.querySelector('#list_title_2');
     title1.style.zIndex = "5";
     title2.style.zIndex = "4";
     title1.style["boxShadow"] = "0px 0px 0px";
     title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["backgroundColor"] = "#EBEBEB";
+    title1.style["backgroundColor"] = "#EAEAEA";
     title2.style["backgroundColor"] = "#888888";
-    title1.style["borderRadius"] = "0px 0px 0px 0px";
-    title2.style["borderRadius"] = "5px 0px 0px 0px";
 }
 
 function title2() {
-    document.getElementById('dept_courses').style.display = 'block';
-    document.getElementById('my_courses').style.display = 'none';
+    document.querySelector('#dept_courses').style.display = 'block';
+    document.querySelector('#my_courses').style.display = 'none';
 
-    document.getElementById('selector_container').style.display = 'block';
-    document.getElementById('search_by_code').style.display = 'none';
+    document.querySelector('#selector_container').style.display = 'block';
+    document.querySelector('#searchCode').style.display = 'none';
 
-    document.getElementById("obligatory").style.display = "inline-block";
-    document.getElementById("elective").style.display = "inline-block";
-    document.getElementById('selected').style.display = 'none';
+    document.querySelector("#obligatory").style.display = "inline-block";
+    document.querySelector("#elective").style.display = "inline-block";
+    document.querySelector('#selected').style.display = 'none';
 
-    var legends = document.getElementsByClassName("my_c");
+    var legends = document.querySelectorAll(".my_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "none";
     }
 
-    var legends = document.getElementsByClassName("dept_c");
+    var legends = document.querySelectorAll(".dept_c");
     for (i = 0; i < legends.length; i++) {
         legends[i].style.display = "block";
     }
 
-    var title1 = document.getElementById('list_title_1');
-    var title2 = document.getElementById('list_title_2');
+    var title1 = document.querySelector('#list_title_1');
+    var title2 = document.querySelector('#list_title_2');
     title1.style.zIndex = "4";
     title2.style.zIndex = "5";
     title2.style["boxShadow"] = "0px 0px 0px";
     title1.style["boxShadow"] = "inset 0px 0px 3px ";
     title1.style["backgroundColor"] = "#888888";
-    title2.style["backgroundColor"] = "#DEDEDE";
-    title2.style["borderRadius"] = "0px 0px 0px 0px";
-    title1.style["borderRadius"] = "0px 5px 0px 0px";
+    title2.style["backgroundColor"] = "#EAEAEA";
 }
