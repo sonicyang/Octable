@@ -1,5 +1,7 @@
 html {
     height: 100%;
+    min-width: 1024px;
+    min-height: 500px;
     overflow-x: hidden;
 }
 
@@ -31,10 +33,10 @@ body {
 
 #content_container {
     display: block;
-    width: 1300px;
+    width: 100%;
     height: 100%;
-    padding-top: 60px;
     margin: 0px;
+    padding-top: 60px;
     box-sizing: padding-box;
 }
 
@@ -213,8 +215,9 @@ body {
     display: inline-block;
     position: relative;
     width: 60%;
+    height: 100%;
     margin-left: 10px;
-    white-space: 0xp;
+    white-space: 0px;
     vertical-align: top;
 }
 
@@ -235,7 +238,8 @@ body {
 
 .column {
     display: inline-block;
-    width: 12%;
+    height: 100%;
+    width: 15%;
     padding: 0px;
     margin: 0px;
     font-size: 9px;
@@ -248,11 +252,11 @@ body {
 .cell {
     background-color: #DEDEDE;
     display: block;
-    height: 50px;
-    width: 100px;
+    height: 8%;
+    width: 100%;
     text-align: center;
-    border:3px solid #EDEDED;
-    border-top:0px solid #ccc;
+    border: 3px solid #EDEDED;
+    border-top: 0px solid #ccc;
 }
 
 .cell:nth-last-child(1) {
