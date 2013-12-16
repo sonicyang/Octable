@@ -67,10 +67,10 @@ function selectSchool(selection) {
         cells[i].innerHTML = "";
         cells[i].setAttribute("mom", "");
         // Add event listener to each cell
-        cells[i].addEventListener("click", function() {oneclick_Block(this, event)}, false);
-        cells[i].addEventListener("dblclick", function() {click_Block(this)}, false);
-        cells[i].addEventListener("mouseover", function() {hover_Block(this)}, false);
-        cells[i].addEventListener("mouseout", function() {out_Block(this)}, false);
+        cells[i].addEventListener("click", function() {clickCell(this, event)}, false);
+        cells[i].addEventListener("dblclick", function() {dblClickCell(this)}, false);
+        cells[i].addEventListener("mouseover", function() {hoverCell(this)}, false);
+        cells[i].addEventListener("mouseout", function() {leaveCell(this)}, false);
 
     }
     document.querySelector("#extern").style.display = "none";
@@ -136,7 +136,7 @@ function selectionChange() {
     for (j = 0; j < subjects.length; j++) {
         subjects[j].addEventListener('mouseover', function() {hoverList(this)}, false);
         subjects[j].addEventListener('mouseout', function() {leaveList(this)}, false);
-        subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
+        subjects[j].addEventListener('mousedown', function() {clickList(this)}, false);
     }
 }
 
@@ -175,7 +175,88 @@ function searchCode(input) {
     for (j = 0; j < subjects.length; j++) {
         subjects[j].addEventListener('mouseover', function() {hoverList(this)}, false);
         subjects[j].addEventListener('mouseout', function() {leaveList(this)}, false);
-        subjects[j].addEventListener('mousedown', function() {down_Course(this)}, false);
+        subjects[j].addEventListener('mousedown', function() {clickList(this)}, false);
+    }
+}
+
+function clickList(listItem) {
+    listItem.style.backgroundColor = "#AAA";
+    var raw = listItem.getAttribute("time").trim();
+    var time = raw.split(",");
+
+    var t_count = 0;
+    var acctimes = new Array();
+
+    for (i = 0; i < time.length; i++) {
+        var weekday = parseInt(time[i], 10).toString().substring(0, 1);
+        for (j = 1; j < time[i].length; j++) {
+            var acctime = weekday + "0" + time[i][j];
+            acctimes[t_count] = acctime;
+            t_count++;
+        }
+    }
+
+    var act = listItem.getAttribute("active");
+    if (act == 0) {
+        var flag = 1;
+        for (i = 0; i < t_count; i++) {
+            var cells = document.getElementById(acctimes[i].trim());
+            if (cells.getAttribute("mom") != "") {
+                flag = 0;
+            }
+        }
+
+        if (flag) {
+            var inx = parseInt(listItem.getAttribute("inx"), 10);
+            for (i = 0; i < t_count; i++) {
+                var cells = document.getElementById(acctimes[i].trim());
+                cells.style.backgroundColor = SELECTED;
+                cells.innerHTML = data[inx]['code'] + " " + data[inx]['title'].split(" ")[0];
+                cells.setAttribute("mom",listItem.getAttribute("inx"));
+            }
+            var app = "<li class='subject' active='1' time='" +
+                raw + "' child='" +listItem.getAttribute("child") + "' inx='" + listItem.getAttribute("inx") + "'>" +
+                listItem.innerHTML + "</li>";
+
+            document.querySelector("#selected").children[0].innerHTML += app;
+
+            var subjects = document.querySelector("#selected").children[0].children;
+            for (i = 0; i < subjects.length; i++) {
+                subjects[i].addEventListener('mouseout', function() {leaveList(this)}, false);
+                subjects[i].addEventListener('mousedown', function() {clickList(this)}, false);
+            }
+            listItem.style.display = "none";
+        }
+    } else {
+        var flag = 1;
+        for (i = 0; i < t_count; i++) {
+            var cells = document.getElementById(acctimes[i].trim());
+            if (cells.getAttribute("mom") != listItem.getAttribute("inx")) {
+                flag = 0;
+            }
+        }
+
+        if (flag) {
+            for (i = 0; i < t_count; i++) {
+                var cells = document.getElementById(acctimes[i].trim());
+                cells.style.backgroundcolor = "#BEE";
+                cells.innerHTML = "";
+                cells.setAttribute("mom", "");
+            }
+
+            var obligatory = ["#obligatory", "#elective"];
+            for (i = 0; i < obligatory.length; i++) {
+                var list = document.querySelector(obligatory[i]).children[0].children;
+                for (j = 0; j < list.length; j++) {
+                    if (list[j].getAttribute("inx") == listItem.getAttribute("inx")) {
+                        list[j].style.display = "list-item";
+                    }
+                }
+            }
+            dynamicTable();
+            listItem.style.display = "none";
+
+        }
     }
 }
 
@@ -228,251 +309,14 @@ function leaveList(listItem) {
             }
         }
     }
-    dyn_ext();
+    dynamicTable();
 }
 
-function dyn_ext() {
-    var flag = 1;
-    var times = {10: "N", 11: "A", 12: "B", 13: "C", 14: "D"};
-    for (i = 1; i <= 6; i++) {
-        for (j = 10; j <= 14; j++) {
-            var acctime = i.toString() + "0" + times[j];
-            if (document.getElementById(acctime).innerHTML != "") {
-                flag = 0;
-            }
-        }
-    }
-    if (flag) {
-        var dynamic_tables = document.querySelectorAll(".dynamic_table");
-        for (i = 0; i < dynamic_tables.length; i++) {
-            dynamic_tables[i].style.display = "none";
-        }
-    }
-}
-
-function down_Course(course) {
-    course.style.backgroundColor = "#AAA";
-    var raw = course.getAttribute("time").trim();
-    var time = raw.split(",");
-
-    var t_count = 0;
-    var acctimes = new Array();
-    for (i in time) {
-        var weekday = parseInt(time[i], 10).toString().substring(0, 1);
-        for (j = 1; j < time[i].length; j++) {
-            var acctime = time[i].substring(j, j + 1);
-            if (acctime.length == 1) {
-                acctime = "0" + acctime;
-            }
-            acctime = weekday + acctime;
-            acctimes[t_count] = acctime;
-            t_count++;
-        }
-    }
-
-    var act = course.getAttribute("active");
-    if (act == 0) {
-        var flag = 1;
-        for (k = 0; k < t_count; k++) {
-            var block = document.getElementById(acctimes[k].trim());
-            if (block.getAttribute("mom") != "") {
-                flag = 0;
-            }
-        }
-
-        if (flag) {
-            var inx = parseInt(course.getAttribute("inx"), 10);
-            for (k = 0; k < t_count; k++) {
-                var block = document.getElementById(acctimes[k].trim());
-                block.style.backgroundColor = SELECTED;
-                block.innerHTML = data[inx]['code'] + " " + data[inx]['title'].split(" ")[0];
-                block.setAttribute("mom", course.getAttribute("inx"));
-            }
-
-            var app = "<li class='subject' active='1' time='" +
-                raw + "' child='" + course.getAttribute("child") + "' inx='" + course.getAttribute("inx") + "'>" +
-                course.innerHTML + "</li>";
-
-            document.querySelector("#selected").children[0].innerHTML += app;
-
-            var subjects = document.querySelector("#selected").children[0].children;
-            for (i = 0; i < subjects.length; i++) {
-                subjects[i].addEventListener('mouseout', function() {leaveList(this)}, false);
-                subjects[i].addEventListener('mousedown', function() {down_Course(this)}, false);
-            }
-            course.style.display = "none";
-        }
-    } else {
-        var flag = 1;
-        for (k = 0; k < t_count; k++) {
-            var block = document.getElementById(acctimes[k].trim());
-            if (block.getAttribute("mom") != course.getAttribute("inx")) {
-                flag = 0;
-            }
-        }
-
-        if (flag) {
-            for (k = 0; k < t_count; k++) {
-                var block = document.getElementById(acctimes[k].trim());
-                block.style.backgroundcolor = "#BEE";
-                block.innerHTML = "";
-                block.setAttribute("mom", "");
-            }
-            var list = document.querySelector("#obligatory").children[0].children;
-            for (i = 0; i < list.length; i++) {
-                if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
-                    list[i].style.display = "list-item";
-                }
-            }
-            var list = document.querySelector("#elective").children[0].children;
-            for (i = 0; i < list.length; i++) {
-                if (list[i].getAttribute("inx") == course.getAttribute("inx")) {
-                    list[i].style.display = "list-item";
-                }
-            }
-            dyn_ext();
-            course.style.display = "none";
-
-        }
-    }
-}
-
-function click_Block(block) {
-    var target = block.getAttribute("mom");
-    var list = document.querySelector("#selected").children[0];
-    var obl = document.querySelector("#obligatory").children[0];
-    var opt = document.querySelector("#elective").children[0];
-    for (i = 0; i < obl.children.length; i++) {
-        if (obl.children[i].getAttribute("inx") == target) {
-            var raw = obl.children[i].getAttribute("time").trim();
-            var time = raw.split(",");
-            for (k in time) {
-                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
-                for (j = 1; j < time[k].length; j++) {
-                    var acctime = time[k].substring(j, j + 1);
-                    if (acctime.length == 1) {
-                        acctime = "0" + acctime;
-                    }
-                    acctime = weekday + acctime;
-                    var block = document.getElementById(acctime);
-                    block.style.backgroundColor = "#DEDEDE";
-                    block.innerHTML = "";
-                    block.setAttribute("mom", "");
-                }
-            }
-            obl.children[i].style.display = "list-item";
-        }
-    }
-    for (i = 0; i < opt.children.length; i++) {
-        if (opt.children[i].getAttribute("inx") == target) {
-            var raw = opt.children[i].getAttribute("time").trim();
-            var time = raw.split(",");
-            for (k in time) {
-                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
-                for (j = 1; j < time[k].length; j++) {
-                    var acctime = time[k].substring(j, j + 1);
-                    if (acctime.length == 1) {
-                        acctime = "0" + acctime;
-                    }
-                    acctime = weekday + acctime;
-                    var block = document.getElementById(acctime);
-                    block.style.backgroundColor = "#DEDEDE";
-                    block.innerHTML = "";
-                    block.setAttribute("mom", "");
-                }
-            }
-            opt.children[i].style.display = "list-item";
-        }
-    }
-
-    for (i = 0; i < list.children.length; i++) {
-        if (list.children[i].getAttribute("inx") == target) {
-            var raw = list.children[i].getAttribute("time").trim();
-            var time = raw.split(",");
-            for (k in time) {
-                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
-                for (j = 1; j < time[k].length; j++) {
-                    var acctime = time[k].substring(j, j + 1);
-                    if (acctime.length == 1) {
-                        acctime = "0" + acctime;
-                    }
-                    acctime = weekday + acctime;
-                    var block = document.getElementById(acctime);
-                    block.style.backgroundColor = "#DEDEDE";
-                    block.innerHTML = "";
-                    block.setAttribute("mom", "");
-                }
-            }
-            list.children[i].style.display = "none";
-        }
-    }
-    document.querySelector("#extern").style.display = "none";
-    dyn_ext();
-}
-
-function hover_Block(block) {
-    var target = block.getAttribute("mom");
-    var list = document.querySelector("#selected").children[0];
-    if (!list) {
-        return;
-    }
-    for (i = 0; i < list.children.length; i++) {
-        if (list.children[i].getAttribute("inx") == target) {
-            var raw = list.children[i].getAttribute("time").trim();
-            var time = raw.split(",");
-            list.children[i].style.backgroundColor = "#CCC";
-            for (k in time) {
-                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
-                for (j = 1; j < time[k].length; j++) {
-                    var acctime = time[k].substring(j, j + 1);
-                    if (acctime.length == 1) {
-                        acctime = "0" + acctime;
-                    }
-                    acctime = weekday + acctime;
-                    var block = document.getElementById(acctime);
-                    block.style.backgroundColor = HOVERED;
-                }
-            }
-        }
-    }
-}
-
-function out_Block(block) {
-    var target = block.getAttribute("mom");
-    var list = document.querySelector("#selected").children[0];
-    if (!list) {
-        return;
-    }
-    for (i = 0; i < list.children.length; i++) {
-        if (list.children[i].getAttribute("inx") == target) {
-            var raw = list.children[i].getAttribute("time").trim();
-            var time = raw.split(",");
-            list.children[i].style.backgroundColor = "";
-            for (k in time) {
-                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
-                for (j = 1; j < time[k].length; j++) {
-                    var acctime = time[k].substring(j, j + 1);
-                    if (acctime.length == 1) {
-                        acctime = "0" + acctime;
-                    }
-                    acctime = weekday + acctime;
-                    var block = document.getElementById(acctime);
-                    if (document.getElementById(acctime).innerHTML == "") {
-                        document.getElementById(acctime).style.backgroundColor = "#DEDEDE";
-                    } else {
-                        document.getElementById(acctime).style.backgroundColor = SELECTED;
-                    }
-                }
-            }
-        }
-    }
-}
-
-var last_c = "";
-function oneclick_Block(block, event) {
-    var mx = event.pageX + 5;
-    var my = event.pageY + 5;
-    var di = block.getAttribute("mom");
+function clickCell(cell, evt) {
+    last_c = typeof last_c != 'undefined' ? last_c: "";
+    var mx = evt.pageX + 5;
+    var my = evt.pageY + 5;
+    var di = cell.getAttribute("mom");
     if (di != "" && di != last_c) {
         var ext = document.querySelector("#extern");
         ext.style.display = "inline-block";
@@ -499,27 +343,163 @@ function oneclick_Block(block, event) {
     }
 }
 
-//toyo
-function title1() {
-    document.querySelector('#my_courses').style.display = 'block';
-    document.querySelector('#dept_courses').style.display = 'none';
-
-    document.querySelector('#selector_container').style.display = 'none';
-    document.querySelector('#searchCode').style.display = 'inline-block';
-
-    document.querySelector('#obligatory').style.display = 'none';
-    document.querySelector("#elective").style.display = "none";
-    document.querySelector('#selected').style.display = 'inline-block';
-
-
-    var legends = document.querySelectorAll(".dept_c");
-    for (i = 0; i < legends.length; i++) {
-        legends[i].style.display = "none";
+function dblClickCell(cell) {
+    var target = cell.getAttribute("mom");
+    var list = document.querySelector("#selected").children[0];
+    var obl = document.querySelector("#obligatory").children[0];
+    var opt = document.querySelector("#elective").children[0];
+    for (i = 0; i < obl.children.length; i++) {
+        if (obl.children[i].getAttribute("inx") == target) {
+            var raw = obl.children[i].getAttribute("time").trim();
+            var time = raw.split(",");
+            for (k in time) {
+                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
+                for (j = 1; j < time[k].length; j++) {
+                    var acctime = time[k].substring(j, j + 1);
+                    if (acctime.length == 1) {
+                        acctime = "0" + acctime;
+                    }
+                    acctime = weekday + acctime;
+                    var cells = document.getElementById(acctime);
+                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.innerHTML = "";
+                    cells.setAttribute("mom", "");
+                }
+            }
+            obl.children[i].style.display = "list-item";
+        }
+    }
+    for (i = 0; i < opt.children.length; i++) {
+        if (opt.children[i].getAttribute("inx") == target) {
+            var raw = opt.children[i].getAttribute("time").trim();
+            var time = raw.split(",");
+            for (k in time) {
+                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
+                for (j = 1; j < time[k].length; j++) {
+                    var acctime = time[k].substring(j, j + 1);
+                    if (acctime.length == 1) {
+                        acctime = "0" + acctime;
+                    }
+                    acctime = weekday + acctime;
+                    var cells = document.getElementById(acctime);
+                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.innerHTML = "";
+                    cells.setAttribute("mom", "");
+                }
+            }
+            opt.children[i].style.display = "list-item";
+        }
     }
 
-    var legends = document.querySelectorAll(".my_c");
-    for (i = 0; i < legends.length; i++) {
-        legends[i].style.display = "block";
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var raw = list.children[i].getAttribute("time").trim();
+            var time = raw.split(",");
+            for (k in time) {
+                var weekday = parseInt(time[k], 10).toString().substring(0, 1);
+                for (j = 1; j < time[k].length; j++) {
+                    var acctime = time[k].substring(j, j + 1);
+                    if (acctime.length == 1) {
+                        acctime = "0" + acctime;
+                    }
+                    acctime = weekday + acctime;
+                    var cells = document.getElementById(acctime);
+                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.innerHTML = "";
+                    cells.setAttribute("mom", "");
+                }
+            }
+            list.children[i].style.display = "none";
+        }
+    }
+    document.querySelector("#extern").style.display = "none";
+    dynamicTable();
+}
+
+function hoverCell(cell) {
+    var target = cell.getAttribute("mom");
+
+    var list = document.querySelector("#selected").children[0];
+    if (!list) {
+        return;
+    }
+
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var time = list.children[i].getAttribute("time").trim().split(",");
+            list.children[i].style.backgroundColor = "#CCC";
+            for (j = 0; j < time.length; j++) {
+                var weekday = time[j][0];
+                for (k = 1; k < time[j].length; k++) {
+                    var acctime = weekday + "0" + time[j][k];
+                    var cells = document.getElementById(acctime);
+                    cells.style.backgroundColor = HOVERED;
+                }
+            }
+        }
+    }
+}
+
+function leaveCell(cell) {
+    var target = cell.getAttribute("mom");
+
+    var list = document.querySelector("#selected").children[0];
+    if (!list) {
+        return;
+    }
+
+    for (i = 0; i < list.children.length; i++) {
+        if (list.children[i].getAttribute("inx") == target) {
+            var time = list.children[i].getAttribute("time").trim().split(",");
+            list.children[i].style.backgroundColor = "";
+            for (j = 0; j < time.length; j++) {
+                var weekday = time[j][0];
+                for (k = 1; k < time[j].length; k++) {
+                    var acctime = weekday + "0" + time[j][k];
+                    var cells = document.getElementById(acctime);
+                    if (cells.innerHTML == "") {
+                        cells.style.backgroundColor = "#DEDEDE";
+                    } else {
+                        cells.style.backgroundColor = SELECTED;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function dynamicTable() {
+    var flag = 1;
+    var times = {10: "N", 11: "A", 12: "B", 13: "C", 14: "D"};
+    for (i = 1; i <= 6; i++) {
+        for (j = 10; j <= 14; j++) {
+            var acctime = i.toString() + "0" + times[j];
+            if (document.getElementById(acctime).innerHTML != "") {
+                flag = 0;
+            }
+        }
+    }
+    if (flag) {
+        var dynamic_tables = document.querySelectorAll(".dynamic_table");
+        for (i = 0; i < dynamic_tables.length; i++) {
+            dynamic_tables[i].style.display = "none";
+        }
+    }
+}
+
+function showMine() {
+    var mine = document.querySelector('#my_courses');
+    mine.style.display = 'block';
+
+    for (i = 0; i < mine.children.length; i++) {
+        mine.children[i].style.display = "block";
+    }
+
+    var dept = document.querySelector('#dept_courses')
+    dept.style.display = 'none';
+
+    for (i = 0; i < dept.children.length; i++) {
+        dept.children[i].style.display = "none";
     }
 
     var title1 = document.querySelector('#list_title_1');
@@ -532,33 +512,27 @@ function title1() {
     title2.style["backgroundColor"] = "#888888";
 }
 
-function title2() {
-    document.querySelector('#dept_courses').style.display = 'block';
-    document.querySelector('#my_courses').style.display = 'none';
+function showDept() {
+    var mine = document.querySelector('#my_courses');
+    mine.style.display = 'none';
 
-    document.querySelector('#selector_container').style.display = 'block';
-    document.querySelector('#searchCode').style.display = 'none';
-
-    document.querySelector("#obligatory").style.display = "inline-block";
-    document.querySelector("#elective").style.display = "inline-block";
-    document.querySelector('#selected').style.display = 'none';
-
-    var legends = document.querySelectorAll(".my_c");
-    for (i = 0; i < legends.length; i++) {
-        legends[i].style.display = "none";
+    for (i = 0; i < mine.children.length; i++) {
+        mine.children[i].style.display = "none";
     }
 
-    var legends = document.querySelectorAll(".dept_c");
-    for (i = 0; i < legends.length; i++) {
-        legends[i].style.display = "block";
+    var dept = document.querySelector('#dept_courses')
+    dept.style.display = 'block';
+
+    for (i = 0; i < dept.children.length; i++) {
+        dept.children[i].style.display = "block";
     }
 
     var title1 = document.querySelector('#list_title_1');
     var title2 = document.querySelector('#list_title_2');
     title1.style.zIndex = "4";
     title2.style.zIndex = "5";
-    title2.style["boxShadow"] = "0px 0px 0px";
     title1.style["boxShadow"] = "inset 0px 0px 3px ";
+    title2.style["boxShadow"] = "0px 0px 0px";
     title1.style["backgroundColor"] = "#888888";
     title2.style["backgroundColor"] = "#EAEAEA";
 }
