@@ -1,4 +1,7 @@
 var data;
+var db = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
 var SELECTED = "#D6B86D";
 var CONFLICT = "#FF1C2D";
@@ -29,9 +32,16 @@ function fetchAJAX(HOST, DIR) {
 
 function selectSchool(selection) {
     var HOST = window.location.toString();
-    var SCHOOL = selection.options[selection.selectedIndex].value;
+    if (selection.options) {
+        var option = selection.options[selection.selectedIndex].value;
+    }
+    var SCHOOL =  option || selection;
     var DATAPATH = "/static/data/" + SCHOOL + "/" + SCHOOL;
     data = fetchAJAX(HOST, DATAPATH);
+
+    db.deleteDatabase("Courses");
+    createDB();
+    localStorage.setItem('selectedSchool', option || selection);
 
     // Reset grade
     document.querySelector("#grade").value = 0;
