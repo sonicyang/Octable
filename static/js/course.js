@@ -1,5 +1,8 @@
 var data;
-var db = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+
+var db;
+var transaction;
+window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
 window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
@@ -39,7 +42,8 @@ function selectSchool(selection) {
     var DATAPATH = "/static/data/" + SCHOOL + "/" + SCHOOL;
     data = fetchAJAX(HOST, DATAPATH);
 
-    db.deleteDatabase("Courses");
+    window.indexedDB.deleteDatabase("Courses");
+
     createDB();
     localStorage.setItem('selectedSchool', option || selection);
 

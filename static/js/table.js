@@ -10,10 +10,10 @@ document.querySelector("#searchCode").addEventListener("input", function() {sear
 function createDB() {
     const dbName = "Courses";
 
-    var request = db.open(dbName, 1);
+    var request = window.indexedDB.open(dbName, 1);
 
     request.onupgradeneeded = function(evt) {
-        var db = evt.target.result;
+        db = evt.target.result;
 
         var objectStore = db.createObjectStore("courses", {keyPath: "id", autoIncrement: true});
 
@@ -27,11 +27,20 @@ function createDB() {
         }
     };
 
-    request.onsuccess = function(evt) {};
+    request.onsuccess = function(evt) {
+        db = evt.target.result;
+        var transaction = db.transaction(["courses"]);
+
+        transaction.oncomplete = function(evt) {
+            var objectStore = transaction.objectStore("code");
+            console.objectStore.get('1023');
+        }
+    };
 
     request.onerror = function(evt) {
         console.log("Database error: " + evt.target.errorCode);
     };
+
 }
 
 if (localStorage.getItem('selectedSchool')) {
@@ -39,3 +48,4 @@ if (localStorage.getItem('selectedSchool')) {
 
     selectSchool(localStorage.getItem('selectedSchool'));
 }
+
