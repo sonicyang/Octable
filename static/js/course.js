@@ -317,7 +317,7 @@ function leaveList(listItem) {
             }
 
             if (document.getElementById(acctime).innerHTML == "") {
-                document.getElementById(acctime).style.backgroundColor = "#DEDEDE";
+                document.getElementById(acctime).style.backgroundColor = "#FFF";
             } else {
                 document.getElementById(acctime).style.backgroundColor = SELECTED;
             }
@@ -375,7 +375,7 @@ function dblClickCell(cell) {
                     }
                     acctime = weekday + acctime;
                     var cells = document.getElementById(acctime);
-                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.style.backgroundColor = "#FFF";
                     cells.innerHTML = "";
                     cells.setAttribute("mom", "");
                 }
@@ -396,7 +396,7 @@ function dblClickCell(cell) {
                     }
                     acctime = weekday + acctime;
                     var cells = document.getElementById(acctime);
-                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.style.backgroundColor = "#FFF";
                     cells.innerHTML = "";
                     cells.setAttribute("mom", "");
                 }
@@ -418,7 +418,7 @@ function dblClickCell(cell) {
                     }
                     acctime = weekday + acctime;
                     var cells = document.getElementById(acctime);
-                    cells.style.backgroundColor = "#DEDEDE";
+                    cells.style.backgroundColor = "#FFF";
                     cells.innerHTML = "";
                     cells.setAttribute("mom", "");
                 }
@@ -501,29 +501,21 @@ function dynamicTable() {
     }
 }
 
+var trigger = 0;
 function showMine() {
     var mine = document.querySelector('#my_courses');
-    mine.style.display = 'block';
-
-    for (i = 0; i < mine.children.length; i++) {
-        mine.children[i].style.display = "block";
+    if (!trigger) {
+        mine.style.display = "inline-block";
+        for (i = 0; i < mine.children.length; i++) {
+            mine.children[i].style.display = "block";
+        }
+    } else {
+        mine.style.display = "none";
+        for (i = 0; i < mine.children.length; i++) {
+            mine.children[i].style.display = "none";
+        }
     }
-
-    var dept = document.querySelector('#dept_courses')
-    dept.style.display = 'none';
-
-    for (i = 0; i < dept.children.length; i++) {
-        dept.children[i].style.display = "none";
-    }
-
-    var title1 = document.querySelector('#list_title_1');
-    var title2 = document.querySelector('#list_title_2');
-    title1.style.zIndex = "5";
-    title2.style.zIndex = "4";
-    title1.style["boxShadow"] = "0px 0px 0px";
-    title2.style["boxShadow"] = "inset 0px 0px 3px ";
-    title1.style["backgroundColor"] = "#EAEAEA";
-    title2.style["backgroundColor"] = "#888888";
+    trigger = !trigger;
 }
 
 function showDept() {

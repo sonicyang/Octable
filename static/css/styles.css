@@ -1,8 +1,14 @@
 html {
     height: 100%;
-    min-width: 1024px;
-    min-height: 500px;
-    overflow-x: hidden;
+    min-width: 968px;
+    overflow-y: hidden;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -11,32 +17,65 @@ body {
     margin: 0px;
 }
 
-#base_container {
-    width: 100%;
-    height: 100%;
-}
-
-#header {
+#navbar {
     background-color: #EBEBEB;
+    position: fixed;
+    top: 0;
+    height: 36px;
     width: 100%;
-    height: 48px;
-    margin-bottom: -48px;
-    padding: 0;
+    z-index: 20;
     box-shadow: 1px 1px 3px #141414;
 }
 
-#header h1 {
-    display: inline-block;
-    margin-left: 20px;
-    line-height: 10px;
+#toggleMine {
+    height: 30px;
+    margin-top: 3px;
+}
+
+#selected {
+    display: none;
+    position: fixed;
+    top: 36px;
+    width: 200px;
+}
+
+#searchCode {
+    height: 30px;
+    margin-top: 3px;
+    padding: 0px 0px 0px 8px;
+    border: 0px;
+    border-radius: 4px;
+}
+
+#searchResult {
+    background-color: #FFFEEE;
+    display: none;
+    position: absolute;
+    left: 79px;
+    top: 30px;
+    z-index: 200;
+    width: 295px;
+    height: 200px;
+    overflow: auto;
+}
+
+#searchList {
+    display: none;
+    padding-left: 20px !important;
+    list-style-type: none;
+}
+
+#school {
+    float: right;
+    height: 30px;
+    margin-top: 3px;
 }
 
 #content_container {
     display: block;
     width: 100%;
     height: 100%;
-    margin: 0px;
-    padding-top: 60px;
+    margin-top: 36px;
     box-sizing: padding-box;
 }
 
@@ -51,18 +90,26 @@ body {
     position: relative;
 }
 
-#selected {
-    display: none;
-    position: relative;
+#show-sidebar {
+    position: fixed;
+    top: 36px;
+    right: 0px;
+    z-index: 20;
+    width: 30px;
+    height: 30px;
+}
+
+#hide-sidebar {
+    float: right;
 }
 
 #sidebar {
-    display: inline-block;
-    position: relative;
-    height: 100%;
-    padding: 0px;
-    vertical-align: top;
-    box-sizing: padding-box;
+    position: fixed;
+    top: 36px;
+    right: -200%;
+    height: calc(100% - 26px);
+    z-index: 20;
+    transition: 0.3s;
 }
 
 #list_title {
@@ -82,69 +129,6 @@ body {
     line-height: 24px;
 }
 
-#searchCode {
-    display: none;
-    width: 295px;
-    height: 24px;
-}
-
-#searchResult {
-    background-color: #fff;
-    display: none;
-    position: absolute;
-    left: 0px;
-    top: 63px;
-    z-index: 200;
-    width: 295px;
-    height: 200px;
-    overflow: auto;
-}
-
-#searchList {
-    display: none;
-    padding-left: 20px !important;
-    list-style-type: none;
-}
-
-#list_title_1 {
-    background-color: #888888;
-    display: inline-block;
-    position: relative;
-    width: 30%;
-    height: 2em;
-    margin: 0px;
-    text-align: center;
-    border-radius: 5px 0px 0px 0px;
-    box-shadow: inset 0px 0px 3px;
-    z-index: 3;
-}
-
-#list_title_2 {
-    background-color: #EBEBEB;
-    display: inline-block;
-    position: relative;
-    right: 5px;
-    width: 30%;
-    height: 2em;
-    margin: 0px;
-    border-radius: 0px 0px 0px 0px;
-    text-align: center;
-    z-index: 4;
-}
-
-#list_title_3 {
-    background-color: #888888;
-    display: inline-block;
-    position: relative;
-    right: 10px;
-    width: 30%;
-    height: 2em;
-    margin: 0px;
-    text-align: center;
-    box-shadow: inset 0px 0px 3px;
-    z-index: 2;
-}
-
 .course_container {
     background-color: #EBEBEB;
     height: 100%;
@@ -154,6 +138,12 @@ body {
 
 #my_courses {
     display: none;
+    position: fixed;
+    width: 200px;
+    height: 340px;
+    left: -7px;
+    top: 27px;
+    z-index: 300;
 }
 
 .list_container {
@@ -212,13 +202,8 @@ body {
 
 /* Cell Blocks */
 #form {
-    display: inline-block;
-    position: relative;
-    width: 60%;
-    height: 100%;
-    margin-left: 10px;
-    white-space: 0px;
-    vertical-align: top;
+    width: 100%;
+    height: calc(100% - 36px);
 }
 
 #time {
@@ -232,31 +217,28 @@ body {
 
 .day {
     height: 3% !important;
-    background-color: #666 !important;
-    border-color: #666 !important;
+    background-color: #DEDEDE !important;
 }
 
 .column {
+    background-color: #DEDEDE;
     display: inline-block;
+    width: 150px;
     height: 100%;
-    width: 15%;
-    padding: 0px;
-    margin: 0px;
+    padding-right: 8px;
     font-size: 9px;
-}
-
-.column:nth-child(2) .cell {
-    border-left-color: #000;
+    overflow-y: auto;
 }
 
 .cell {
-    background-color: #DEDEDE;
-    display: block;
-    height: 8%;
+    background-color: #FFFFFF;
+    display: inline-block;
+    height: 70px;
     width: 100%;
+    margin: 4px;
     text-align: center;
-    border: 3px solid #EDEDED;
-    border-top: 0px solid #ccc;
+    border-radius: 3px;
+    opacity: 0.8;
 }
 
 .cell:nth-last-child(1) {
@@ -275,7 +257,6 @@ body {
 .clearfix {
     visibility: hidden;
 }
-
 
 .extern {
     background-color: #EEEEEE;

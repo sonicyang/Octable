@@ -2,11 +2,6 @@ document.querySelector("#school").addEventListener("change", function() {selectS
 document.querySelector("#department").addEventListener("change", selectionChange, false);
 document.querySelector("#grade").addEventListener("change", selectionChange, false);
 
-document.querySelector("#list_title_1").addEventListener("click", showMine, false);
-document.querySelector("#list_title_2").addEventListener("click", showDept, false);
-
-document.querySelector("#searchCode").addEventListener("input", function() {searchCode(this)}, false);
-
 function createDB() {
     const dbName = "Courses";
 
@@ -32,8 +27,6 @@ function createDB() {
         var transaction = db.transaction(["courses"]);
 
         transaction.oncomplete = function(evt) {
-            var objectStore = transaction.objectStore("code");
-            console.objectStore.get('1023');
         }
     };
 
@@ -45,7 +38,28 @@ function createDB() {
 
 if (localStorage.getItem('selectedSchool')) {
     document.querySelector('#school').value = localStorage.getItem('selectedSchool');
-
     selectSchool(localStorage.getItem('selectedSchool'));
 }
 
+/* Sidebar */
+function showSidebar() {
+    var sidebar = document.querySelector('#sidebar');
+    sidebar.style.right = '0px';
+//    var form = document.querySelector('#form');
+//    form.style.width = "calc(100% - 300px)";
+}
+
+function hideSidebar() {
+    var sidebar = document.querySelector('#sidebar');
+    sidebar.style.right = '-200%';
+//    var form = document.querySelector('#form');
+//    form.style.width = "100%";
+
+}
+
+document.querySelector('#show-sidebar').addEventListener("click", function() {showSidebar();});
+document.querySelector('#hide-sidebar').addEventListener("click", function() {hideSidebar();});
+
+/* Navbar */
+document.querySelector("#searchCode").addEventListener("input", function() {searchCode(this)}, false);
+document.querySelector("#toggleMine").addEventListener("click", function() {showMine()}, false);
