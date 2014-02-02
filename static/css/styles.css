@@ -112,6 +112,12 @@ body {
     transition: 0.3s;
 }
 
+@media (min-width: 1268px) {
+    #sidebar {
+        right: 0px;
+    }
+}
+
 #list_title {
     display: inline-block;
     position: relative;
