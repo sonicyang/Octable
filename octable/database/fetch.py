@@ -80,7 +80,10 @@ def main():
                 sqlcode += str(tmp) + ","
 
                 print("Grade : " + cols[6].getText())
-                sqlcode += cols[6].getText() + ","
+                if cols[6].getText() != "" and cols[6].getText() != " ":
+                    sqlcode += cols[6].getText() + ","
+                else:
+                    sqlcode += "0" + ","
                 
 
                 print("TYPE : " + cols[7].getText())
@@ -141,109 +144,121 @@ def main():
                 sqlcode += cols[14].getText() + ","
 
                 print("Free : " + cols[15].getText())
-                sqlcode += cols[15].getText() + ","
-
-
+                if cols[15].getText() == "額滿":
+                    sqlcode += "0" + ","
+                elif cols[15].getText() == "不限":
+                    sqlcode += "2147483648" + ","
+                else:
+                    sqlcode += cols[15].getText() + ","
+                    
                 dayData = [0, 0, 0, 0, 0, 0]
                 sFlag = 0
                 DayHolder = 0
                 LinkHolder = 0
                 LastReaded = 0
                 print("Time : " + cols[16].getText())
-                for j in range(0, len(cols[16].getText())):
-                    if cols[16].getText()[j] == "[" and not sFlag:
-                        sFlag = 1
-                        DayHolder = 0
-                    elif cols[16].getText()[j] == "]" and sFlag:
-                        sFlag = 0
-                    elif sFlag:
-                        DayHolder = int(cols[16].getText()[j])
-                    elif cols[16].getText()[j] == "~":
-                        LinkHolder = 1
-                    elif not sFlag:
-                        if not LinkHolder:
-                            if cols[16].getText()[j] == "1":
-                                dayData[DayHolder - 1] += 1
-                                LastReaded = 1
-                            elif cols[16].getText()[j] == "2":
-                                dayData[DayHolder - 1] += 2
-                                LastReaded = 2
-                            elif cols[16].getText()[j] == "3":
-                                dayData[DayHolder - 1] += 4
-                                LastReaded = 3
-                            elif cols[16].getText()[j] == "4":
-                                dayData[DayHolder - 1] += 8
-                                LastReaded = 4
-                            elif cols[16].getText()[j] == "N":
-                                dayData[DayHolder - 1] += 16
-                                LastReaded = 5
-                            elif cols[16].getText()[j] == "5":
-                                dayData[DayHolder - 1] += 32
-                                LastReaded = 6
-                            elif cols[16].getText()[j] == "6":
-                                dayData[DayHolder - 1] += 64
-                                LastReaded = 7
-                            elif cols[16].getText()[j] == "7":
-                                dayData[DayHolder - 1] += 128
-                                LastReaded = 8
-                            elif cols[16].getText()[j] == "8":
-                                dayData[DayHolder - 1] += 256
-                                LastReaded = 9
-                            elif cols[16].getText()[j] == "9":
-                                dayData[DayHolder - 1] += 512
-                                LastReaded = 10
-                            elif cols[16].getText()[j] == "A":
-                                dayData[DayHolder - 1] += 1024
-                                LastReaded = 11
-                            elif cols[16].getText()[j] == "B":
-                                dayData[DayHolder - 1] += 2048
-                                LastReaded = 12
-                            elif cols[16].getText()[j] == "C":
-                                dayData[DayHolder - 1] += 4096
-                                LastReaded = 13
-                            elif cols[16].getText()[j] == "D":
-                                dayData[DayHolder - 1] += 8192
-                                LastReaded = 14
+                if cols[16].getText() == "未定":
+                    sqlcode += "0" + ","
+                    sqlcode += "0" + ","
+                    sqlcode += "0" + ","
+                    sqlcode += "0" + ","
+                    sqlcode += "0" + ","
+                    sqlcode += "0" + ","
+                else:
+                    for j in range(0, len(cols[16].getText())):
+                        if cols[16].getText()[j] == "[" and not sFlag:
+                            sFlag = 1
+                            DayHolder = 0
+                        elif cols[16].getText()[j] == "]" and sFlag:
+                            sFlag = 0
+                        elif sFlag:
+                            DayHolder = int(cols[16].getText()[j])
+                        elif cols[16].getText()[j] == "~":
+                            LinkHolder = 1
+                        elif not sFlag:
+                            if not LinkHolder:
+                                if cols[16].getText()[j] == "1":
+                                    dayData[DayHolder - 1] += 1
+                                    LastReaded = 1
+                                elif cols[16].getText()[j] == "2":
+                                    dayData[DayHolder - 1] += 2
+                                    LastReaded = 2
+                                elif cols[16].getText()[j] == "3":
+                                    dayData[DayHolder - 1] += 4
+                                    LastReaded = 3
+                                elif cols[16].getText()[j] == "4":
+                                    dayData[DayHolder - 1] += 8
+                                    LastReaded = 4
+                                elif cols[16].getText()[j] == "N":
+                                    dayData[DayHolder - 1] += 16
+                                    LastReaded = 5
+                                elif cols[16].getText()[j] == "5":
+                                    dayData[DayHolder - 1] += 32
+                                    LastReaded = 6
+                                elif cols[16].getText()[j] == "6":
+                                    dayData[DayHolder - 1] += 64
+                                    LastReaded = 7
+                                elif cols[16].getText()[j] == "7":
+                                    dayData[DayHolder - 1] += 128
+                                    LastReaded = 8
+                                elif cols[16].getText()[j] == "8":
+                                    dayData[DayHolder - 1] += 256
+                                    LastReaded = 9
+                                elif cols[16].getText()[j] == "9":
+                                    dayData[DayHolder - 1] += 512
+                                    LastReaded = 10
+                                elif cols[16].getText()[j] == "A":
+                                    dayData[DayHolder - 1] += 1024
+                                    LastReaded = 11
+                                elif cols[16].getText()[j] == "B":
+                                    dayData[DayHolder - 1] += 2048
+                                    LastReaded = 12
+                                elif cols[16].getText()[j] == "C":
+                                    dayData[DayHolder - 1] += 4096
+                                    LastReaded = 13
+                                elif cols[16].getText()[j] == "D":
+                                    dayData[DayHolder - 1] += 8192
+                                    LastReaded = 14
+                            else:
+                                tmp = 0
+                                if cols[16].getText()[j] == "2":
+                                    tmp = 2
+                                elif cols[16].getText()[j] == "3":
+                                    tmp = 3
+                                elif cols[16].getText()[j] == "4":
+                                    tmp = 4
+                                elif cols[16].getText()[j] == "N":
+                                    tmp = 5
+                                elif cols[16].getText()[j] == "5":
+                                    tmp = 6
+                                elif cols[16].getText()[j] == "6":
+                                    tmp = 7
+                                elif cols[16].getText()[j] == "7":
+                                    tmp = 8
+                                elif cols[16].getText()[j] == "8":
+                                    tmp = 9
+                                elif cols[16].getText()[j] == "9":
+                                    tmp = 10
+                                elif cols[16].getText()[j] == "A":
+                                    tmp = 11
+                                elif cols[16].getText()[j] == "B":
+                                    tmp = 12
+                                elif cols[16].getText()[j] == "C":
+                                    tmp = 13
+                                elif cols[16].getText()[j] == "D":
+                                    tmp = 14
+                                for l in range(LastReaded + 1, tmp + 1):
+                                    dayData[DayHolder - 1] += 2 ** (l - 1)
+                                LinkHolder = 0
                         else:
-                            tmp = 0
-                            if cols[16].getText()[j] == "2":
-                                tmp = 2
-                            elif cols[16].getText()[j] == "3":
-                                tmp = 3
-                            elif cols[16].getText()[j] == "4":
-                                tmp = 4
-                            elif cols[16].getText()[j] == "N":
-                                tmp = 5
-                            elif cols[16].getText()[j] == "5":
-                                tmp = 6
-                            elif cols[16].getText()[j] == "6":
-                                tmp = 7
-                            elif cols[16].getText()[j] == "7":
-                                tmp = 8
-                            elif cols[16].getText()[j] == "8":
-                                tmp = 9
-                            elif cols[16].getText()[j] == "9":
-                                tmp = 10
-                            elif cols[16].getText()[j] == "A":
-                                tmp = 11
-                            elif cols[16].getText()[j] == "B":
-                                tmp = 12
-                            elif cols[16].getText()[j] == "C":
-                                tmp = 13
-                            elif cols[16].getText()[j] == "D":
-                                tmp = 14
-                            for l in range(LastReaded + 1, tmp + 1):
-                                dayData[DayHolder - 1] += 2 ** (l - 1)
-                            LinkHolder = 0
-                    else:
-                        raise
+                            raise
 
-                sqlcode += str(dayData[0]) + ","
-                sqlcode += str(dayData[1]) + ","
-                sqlcode += str(dayData[2]) + ","
-                sqlcode += str(dayData[3]) + ","
-                sqlcode += str(dayData[4]) + ","
-                sqlcode += str(dayData[5]) + ","
+                    sqlcode += str(dayData[0]) + ","
+                    sqlcode += str(dayData[1]) + ","
+                    sqlcode += str(dayData[2]) + ","
+                    sqlcode += str(dayData[3]) + ","
+                    sqlcode += str(dayData[4]) + ","
+                    sqlcode += str(dayData[5]) + ","
 
                 if len(cols[17].select("a")) > 0:
                     print("Place : " + cols[17].select("a")[0].getText())
@@ -270,15 +285,21 @@ def main():
 
                 print("Moocs : " + cols[23].getText())
                 if cols[23].getText() == "是":
-                    sqlcode += "1" + ","
+                    sqlcode += "1"
                 elif cols[23].getText() == "否":
-                    sqlcode += "0" + ","
+                    sqlcode += "0"
                 else:
                     raise
 
                 sqlcode += ");"
 
+                print("Executing SQL Expression :　")
+                """print(sqlcode);"""
+                cur.execute(sqlcode)
+
                 print("========================================")
+
+
 
 if __name__ == "__main__":
     main()
