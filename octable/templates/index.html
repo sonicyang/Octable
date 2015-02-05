@@ -1,113 +1,153 @@
-{% load staticfiles %}
-
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>Octable</title>
-    <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}/">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Octable</title>
+        <!-- Modernizr -->
+        <script src="./static/groundwork/js/libs/modernizr-2.6.2.min.js"></script>
+        <!-- framework css -->
+        <!--[if gt IE 9]><!-->
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork.css">
+        <!--<![endif]-->
+        <!--[if lte IE 9]>
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork-core.css">
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork-type.css">
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork-ui.css">
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork-anim.css">
+        <link type="text/css" rel="stylesheet" href="./static/groundwork/css/groundwork-ie.css">
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="./static/css/styles.css">
 
-<body>
-    <div id="base_container">
+    </head>
 
-        <nav id="header">
-            <h1>Octable</h1>
-        </nav>
+    <body>
+        <h2 id="title" class="responsive" data-compression="25">
+            Octable
+        </h2>
+        <div class="row">
+            <div id="table-container" class="three fourths">
 
-        <div id="content_container">
-            <div id="sidebar">
-                <div id="list_title">
-                    <div id="list_title_1">我的課程</div>
-                    <div id="list_title_2">系所課程</div>
-                </div>
+                <table class="responsive" data-max="15">
+                    <thead>
+                        <tr>
+                            <th>~~</th>
+                            <th>一</th>
+                            <th>二</th>
+                            <th>三</th>
+                            <th>四</th>
+                            <th>五</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>N</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                <div class="course_container" id="my_courses">
-                    <input id="searchCode" type="text" placeholder="Search by code">
-                    <h1 class="my_c legend">已選擇</h1>
-                    <div class="list_container" id="selected">
-                        <ul class="course"></ul>
-                    </div>
-                </div>
-
-                <div class="course_container" id="dept_courses">
-                    <div id="selector_container">
-
-                        <select id="department"></select>
-
-                        <select id="grade">
-                            <option value="0">All</option>
-                            <option value="1">一</option>
-                            <option value="2">二</option>
-                            <option value="3">三</option>
-                            <option value="4">四</option>
-                        </select>
-                    </div>
-                    <h1 class="dept_c legend">必修</h1>
-                    <div class="list_container" id="obligatory">
-                        <ul class="course"></ul>
-                    </div>
-                    <h1 class="dept_c legend">選修</h1>
-                    <div class="list_container" id="elective">
-                        <ul class="course"></ul>
-                    </div>
-                </div>
-
-                <div id="searchResult"><ul id="searchList"></ul></div>
             </div>
+            <div class="one fourth" style="padding:1rem">
+                <div class="tabs">
+                    <ul role="tablist">
+                        <li role="tab" aria-controls="#tab1">Tab 1</li>
+                        <li role="tab" aria-controls="#tab2">Tab 2</li>
+                        <li role="tab" aria-controls="#tab3">Tab 3</li>
+                    </ul>
+                    <div id="tab1" role="tabpanel">
+                        <h1>This is the content of tab <span class="blue">panel 1</span></h1>
 
-            <div id="form">
-                <div class="column" id="time">
-
-                    <div class="cell day" id="000"></div>
-                    {% for i in '1234N56789'|make_list %}
-                        <div class="cell" id="00{{ i }}">{{ i }}</div>
-                    {% endfor %}
-        
-                    <div class="dynamic_table">
-                        {% for i in 'ABCD'|make_list %}
-                            <div class="cell" id="00{{ i }}">{{ i }}</div>
-                        {% endfor %}
-
-                        <div class="clearfix">
-                            <br>
-                        </div>
                     </div>
-                    <div class="clearfix">
-                        <br>
+                    <div id="tab2" role="tabpanel">
+                        <h1>This is the content of tab <span class="red">panel 2</span></h1>
+                    </div>
+                    <div id="tab3" role="tabpanel">
                     </div>
                 </div>
-
-                {% for k in '123456'|make_list %}
-                    <div class="column" id="{% cycle 'Mon' 'Tue' 'Wed' 'Thr' 'Fri' 'Sat' %}">
-                        <div class="cell day" id="{{ k }}00">{% cycle '一' '二' '三' '四' '五' '六' %}</div>
-
-                        {% for i in '1234N56789'|make_list %}
-                            <div class="cell" id="{{ k }}0{{ i }}"  mom=""></div>
-                        {% endfor %}
-
-                        <div class="dynamic_table">
-                            {% for i in 'ABCD'|make_list %}
-                                <div class="cell" id="{{ k }}0{{ i }}" mom=""></div>
-                            {% endfor %}
-                            <div class="clearfix">
-                                <br>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <br>
-                        </div>
-                    </div>
-                {% endfor %}
-
             </div>
-            <div class="extern" id="extern"></div>
         </div>
-    </div>
-
-    <script type="text/javascript" src="{% static "js/course.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/table.js" %}"></script>
-</body>
+        <script type="text/javascript" src="./static/js/course.js"></script>
+        <script type="text/javascript" src="./static/js/table.js"></script>
+        <script type="text/javascript" src="./static/groundwork/js/libs/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="./static/groundwork/js/groundwork.all.js"></script>
+    </body>
 
 </html>
