@@ -10,3 +10,8 @@ html, body{
 #table-container{
     padding:1rem;
 }
+@media (max-width: 767px){
+    #tabs-container{
+        display:none;
+    }
+}
