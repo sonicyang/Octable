@@ -53,6 +53,8 @@ def main():
                 sqlcode = "INSERT INTO " + e.select("a")[0]["href"][-2:] + "(SerialNum, CourseNum, ClassNum, Class, Grade, TYPE, GRP, ENG, Name, Optional, Credits, Prof, Selected, Free, MON, TUE, WED, THS, FRI, SAT, Place, Memo, Restriction, Industrial, Property, Moocs) VALUES("
 
                 print("SerialNum : " + cols[2].getText())
+                if cols[2].getText() == "" or cols[2].getText() == " ":
+                    continue
                 sqlcode += cols[2].getText() + ","
                 
                 print("CourseNum : " + cols[3].getText())
