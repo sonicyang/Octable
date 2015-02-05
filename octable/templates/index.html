@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
         <title>Octable</title>
         <!-- Modernizr -->
         <script src="./static/groundwork/js/libs/modernizr-2.6.2.min.js"></script>
@@ -23,7 +24,7 @@
     </head>
 
     <body>
-        <h2 id="title" class="responsive" data-compression="25">
+        <h2 id="title" class="responsive" data-compression="25" style="font-family: 'Lobster', cursive;">
             Octable
         </h2>
         <div class="row">
@@ -32,12 +33,12 @@
                 <table class="responsive" data-max="15">
                     <thead>
                         <tr>
-                            <th>~~</th>
-                            <th>一</th>
-                            <th>二</th>
-                            <th>三</th>
-                            <th>四</th>
-                            <th>五</th>
+                            <th></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thr</th>
+                            <th>Fri</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,15 +129,31 @@
             <div id="tabs-container" class="one fourth" style="padding:1rem">
                 <div class="tabs mobile">
                     <ul role="tablist">
-                        <li role="tab" aria-controls="#tab1">Tab 1</li>
-                        <li role="tab" aria-controls="#tab2">Tab 2</li>
+                        <li role="tab" aria-controls="#tab1" style="">All</li>
+                        <li role="tab" aria-controls="#tab2">My Course</li>
                     </ul>
                     <div id="tab1" role="tabpanel">
-                        <h1>This is the content of tab <span class="blue">panel 1</span></h1>
+                        <div class="row">
+                            <div class="two thirds" style="padding:0.2rem;">
+                                <select name="Department">
+                                    <option>系所</option>
+                                    <option>資訊系</option>
+                                    <option>電機系</option>
+                                </select>
+                            </div>
+                            <div class="one third" style="padding:0.2rem;">
+                                <select name="Grade">
+                                    <option>一</option>
+                                    <option>二</option>
+                                    <option>三</option>
+                                </select>
+                            </div>
 
+                        </div>
                     </div>
                     <div id="tab2" role="tabpanel">
-                        <h1>This is the content of tab <span class="red">panel 2</span></h1>
+                        nothing here
+                        <code >int a;</code>
                     </div>
 
                 </div>
