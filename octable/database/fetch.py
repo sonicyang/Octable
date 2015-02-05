@@ -55,10 +55,10 @@ def main():
                 print("SerialNum : " + cols[2].getText())
                 sqlcode += cols[2].getText() + ","
                 
-                print("CourseNum : " + cols[2].getText())
+                print("CourseNum : " + cols[3].getText())
                 sqlcode += "'" + cols[3].getText() + "'" + ","
 
-                print("ClassNum : " + cols[2].getText())
+                print("ClassNum : " + cols[4].getText())
                 sqlcode += "'" + cols[4].getText() + "'" + ","
 
                 print("Class : " + cols[2].getText())
@@ -293,9 +293,14 @@ def main():
 
                 sqlcode += ");"
 
-                print("Executing SQL Expression :　")
-                """print(sqlcode);"""
-                cur.execute(sqlcode)
+                print("Executing SQL Expression")
+                """print(sqlcode)"""
+                try:
+                    cur.execute(sqlcode)
+                except:
+                    print("Error on Executing Following SQL Expression :")
+                    print(sqlcode)
+                    raise
 
                 print("========================================")
 
